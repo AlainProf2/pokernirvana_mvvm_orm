@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="PokerNirvana_MVVM_ORM.View.TournoisParties"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+         <!-- Liste des Tournois-->
+        <Label>Liste des tournois</Label>
+        <ListBox x:Name="listBoxTournois" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding SommaireTournois}"
+            SelectedItem="{Binding TournoiSelectionne, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Numero}" FontSize="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <!-- Adversaires et parties Parties d'un Tournoi-->
+           <WrapPanel Grid.Row="1" Grid.Column="1">
+            <Label>Parties:</Label>
+            <ListBox ItemsSource="{Binding PartiesDuTournoi}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Button Content="{Binding Numero}" Click="OuvrirPartie" FontSize="20"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+            <Label>Type:</Label>
+              <TextBox Height="30" Width="100" Text="{Binding Vw_TypeTournoi}"></TextBox>
+
+            <Label>Adversaires nom:</Label>
+            <ListBox ItemsSource="{Binding Adversaires}"
+                       SelectedItem="{Binding TournoiSelectionne, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Nom}" FontSize="20"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+
+    </Grid>
+</UserControl>

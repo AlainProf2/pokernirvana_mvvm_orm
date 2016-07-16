@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{42B8D89F-90B7-475D-B4F6-0D138AC61568}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PokerNirvana_MVVM_ORM</RootNamespace>
+    <AssemblyName>PokerNirvana_MVVM_ORM</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LibrairieTiers\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Librairies\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Model\Historique.cs" />
+    <Compile Include="Model\iHistoriqueRepo.cs" />
+    <Compile Include="Model\iMainRepo.cs" />
+    <Compile Include="Model\iMembreRepo.cs" />
+    <Compile Include="Model\iPartieRepo.cs" />
+    <Compile Include="Model\iTournoiRepo.cs" />
+    <Compile Include="Model\iJoueurRepo.cs" />
+    <Compile Include="Model\JoueurPartie.cs" />
+    <Compile Include="Model\Membre.cs" />
+    <Compile Include="Model\Partie.cs" />
+    <Compile Include="Model\Tournois.cs" />
+    <Compile Include="Model\TrousseGlobale.cs" />
+    <Compile Include="Model\uneMain.cs" />
+    <Compile Include="Principale.xaml.cs">
+      <DependentUpon>Principale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\BDService.cs" />
+    <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="ViewModel\MembresListeViewModel.cs" />
+    <Compile Include="ViewModel\ORM\HistoriqueRepo.cs" />
+    <Compile Include="ViewModel\ORM\JoueurRepo.cs" />
+    <Compile Include="ViewModel\ORM\MainRepo.cs" />
+    <Compile Include="ViewModel\ORM\MembresRepo.cs" />
+    <Compile Include="ViewModel\ORM\NHibernateHelper.cs" />
+    <Compile Include="ViewModel\ORM\PartieRepo.cs" />
+    <Compile Include="ViewModel\ORM\TournoisRepo.cs" />
+    <Compile Include="ViewModel\Service\IApplicationService.cs" />
+    <Compile Include="ViewModel\Service\ServiceFactory.cs" />
+    <Compile Include="ViewModel\TexasTableViewModel.cs" />
+    <Compile Include="ViewModel\TournoisListeViewModel.cs" />
+    <Compile Include="ViewModel\TournoisPartiesViewModel.cs" />
+    <Compile Include="View\Connexion.xaml.cs">
+      <DependentUpon>Connexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreerTournoisParties.xaml.cs">
+      <DependentUpon>CreerTournoisParties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InfoMembre.xaml.cs">
+      <DependentUpon>InfoMembre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MenuPrincipal.xaml.cs">
+      <DependentUpon>MenuPrincipal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reprise.xaml.cs">
+      <DependentUpon>Reprise.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Statistiques.xaml.cs">
+      <DependentUpon>Statistiques.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TexasTable.xaml.cs">
+      <DependentUpon>TexasTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TournoisListe.xaml.cs">
+      <DependentUpon>TournoisListe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\Club.cs" />
+    <Compile Include="Model\ConfigPartie.cs" />
+    <Compile Include="Model\Croupier.cs" />
+    <Compile Include="Model\Evaluateur.cs" />
+    <Compile Include="Model\Gestionnaire.cs" />
+    <Compile Include="Model\Joueur.cs" />
+    <Compile Include="Model\Paquet.cs" />
+    <Compile Include="Model\PartieActive.cs" />
+    <Compile Include="View\TournoisParties.xaml.cs">
+      <DependentUpon>TournoisParties.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Principale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Connexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreerTournoisParties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\InfoMembre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MenuPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reprise.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Statistiques.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TexasTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TournoisListe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TournoisParties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JoueurPartie.hbm.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tournois.hbm.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\table.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\aProposIcon.png" />
+    <Resource Include="View\Images\HelpIcon.png" />
+    <Resource Include="View\Images\notifIcon.png" />
+    <Resource Include="View\Images\paramIcon.png" />
+    <Resource Include="View\Images\retour.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Membre.hbm.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\cartes\carreau_as.gif" />
+    <Resource Include="View\Images\cartes\carreau_cinq.gif" />
+    <Resource Include="View\Images\cartes\carreau_deux.gif" />
+    <Resource Include="View\Images\cartes\carreau_dix.gif" />
+    <Resource Include="View\Images\cartes\carreau_huit.gif" />
+    <Resource Include="View\Images\cartes\carreau_neuf.gif" />
+    <Resource Include="View\Images\cartes\carreau_quatre.gif" />
+    <Resource Include="View\Images\cartes\carreau_reine.gif" />
+    <Resource Include="View\Images\cartes\carreau_roi.gif" />
+    <Resource Include="View\Images\cartes\carreau_sept.gif" />
+    <Resource Include="View\Images\cartes\carreau_six.gif" />
+    <Resource Include="View\Images\cartes\carreau_trois.gif" />
+    <Resource Include="View\Images\cartes\carreau_valet.gif" />
+    <Resource Include="View\Images\cartes\coeur_as.gif" />
+    <Resource Include="View\Images\cartes\coeur_cinq.gif" />
+    <Resource Include="View\Images\cartes\coeur_deux.gif" />
+    <Resource Include="View\Images\cartes\coeur_dix.gif" />
+    <Resource Include="View\Images\cartes\coeur_huit.gif" />
+    <Resource Include="View\Images\cartes\coeur_neuf.gif" />
+    <Resource Include="View\Images\cartes\coeur_quatre.gif" />
+    <Resource Include="View\Images\cartes\coeur_reine.gif" />
+    <Resource Include="View\Images\cartes\coeur_roi.gif" />
+    <Resource Include="View\Images\cartes\coeur_sept.gif" />
+    <Resource Include="View\Images\cartes\coeur_six.gif" />
+    <Resource Include="View\Images\cartes\coeur_trois.gif" />
+    <Resource Include="View\Images\cartes\coeur_valet.gif" />
+    <Resource Include="View\Images\cartes\endos.gif" />
+    <Resource Include="View\Images\cartes\pique_as.gif" />
+    <Resource Include="View\Images\cartes\pique_cinq.gif" />
+    <Resource Include="View\Images\cartes\pique_deux.gif" />
+    <Resource Include="View\Images\cartes\pique_dix.gif" />
+    <Resource Include="View\Images\cartes\pique_huit.gif" />
+    <Resource Include="View\Images\cartes\pique_neuf.gif" />
+    <Resource Include="View\Images\cartes\pique_quatre.gif" />
+    <Resource Include="View\Images\cartes\pique_reine.gif" />
+    <Resource Include="View\Images\cartes\pique_roi.gif" />
+    <Resource Include="View\Images\cartes\pique_sept.gif" />
+    <Resource Include="View\Images\cartes\pique_six.gif" />
+    <Resource Include="View\Images\cartes\pique_trois.gif" />
+    <Resource Include="View\Images\cartes\pique_valet.gif" />
+    <Resource Include="View\Images\cartes\trefle_as.gif" />
+    <Resource Include="View\Images\cartes\trefle_cinq.gif" />
+    <Resource Include="View\Images\cartes\trefle_deux.gif" />
+    <Resource Include="View\Images\cartes\trefle_dix.gif" />
+    <Resource Include="View\Images\cartes\trefle_huit.gif" />
+    <Resource Include="View\Images\cartes\trefle_neuf.gif" />
+    <Resource Include="View\Images\cartes\trefle_quatre.gif" />
+    <Resource Include="View\Images\cartes\trefle_reine.gif" />
+    <Resource Include="View\Images\cartes\trefle_roi.gif" />
+    <Resource Include="View\Images\cartes\trefle_sept.gif" />
+    <Resource Include="View\Images\cartes\trefle_six.gif" />
+    <Resource Include="View\Images\cartes\trefle_trois.gif" />
+    <Resource Include="View\Images\cartes\trefle_valet.gif" />
+    <Resource Include="View\Images\cartes\vide_vide.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Partie.hbm.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="uneMain.hbm.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\Joueurs\certs.jpg" />
+    <Resource Include="View\Images\Joueurs\cheen.jpg" />
+    <Resource Include="View\Images\Joueurs\gos.jpg" />
+    <Resource Include="View\Images\Joueurs\inconnu.jpg" />
+    <Resource Include="View\Images\Joueurs\k.jpg" />
+    <Resource Include="View\Images\Joueurs\pough.jpg" />
+    <Resource Include="View\Images\Joueurs\speed.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Historique.hbm.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="PokerNirvana_MVVM_ORM.View.TournoisListe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="800" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Bouton d'Actions (Ajouter, Supprimer, Tout enregistrer) -->
+        <ToolBarTray Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <ToolBar>
+                <Button Content="Ajouter" Command="{Binding CmdNeoTournoi}"/>
+                <Button Content="Supprimer" Command="{Binding CmdSuppTournoi}"/>
+                <Button Content="Tout enregistrer" Command="{Binding CmdToutEnreg}"/>
+            </ToolBar>
+        </ToolBarTray>
+
+        <!-- Liste des Tournois-->
+        <ListBox x:Name="listBoxTournois" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding SommaireTournois}"
+            SelectedItem="{Binding TournoiSelectionne, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Numero}" FontSize="20"/>
+                        <TextBlock Text="{Binding Debut}" FontSize="20"/>
+                        <TextBlock Text="{Binding Gagnant}" FontSize="14"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <!-- Détails des Tournois-->
+        <!--<Grid Margin="0" Grid.Row="1" Grid.Column="1"> -->
+        <Grid Margin="0" Grid.Row="1" Grid.Column="1" DataContext="{Binding ElementName=listBoxTournois, Path=SelectedItem}">
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Margin" Value="0,0,10,0"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="0,0,10,0"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Numéro :" Grid.Row="0"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Numero}"/>
+            <Label Content="Début :" Grid.Row="1"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Debut}"/>
+            <Label Content="Fin :" Grid.Row="2"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Fin}"/>
+            <Label Content="Gagnant :" Grid.Row="3"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Gagnant}"/>
+            <Label Content="Joueur 0:" Grid.Row="4"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding J0}"/>
+            <Label Content="Joueur 1 :" Grid.Row="5"/>
+            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding J1}"/>
+            <Label Content="Joueur 2 :" Grid.Row="6"/>
+            <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding J2}"/>
+            <Label Content="Joueur 3 :" Grid.Row="7"/>
+            <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding J3}"/>
+            <Label Content="Joueur 4 :" Grid.Row="8"/>
+            <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding J4}"/>
+            <Label Content="Joueur 5 :" Grid.Row="9"/>
+            <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding J5}"/>
+            <Label Content="Nb vic J0 :" Grid.Row="10"/>
+            <TextBox Grid.Column="1" Grid.Row="10" Text="{Binding J0_Vic}"/>
+            <Label Content="Nb vic J1 :" Grid.Row="11"/>
+            <TextBox Grid.Column="1" Grid.Row="11" Text="{Binding J1_Vic}"/>
+            <Label Content="Nb vic J2 :" Grid.Row="12"/>
+            <TextBox Grid.Column="1" Grid.Row="12" Text="{Binding J2_Vic}"/>
+            <Label Content="Nb vic J3 :" Grid.Row="13"/>
+            <TextBox Grid.Column="1" Grid.Row="13" Text="{Binding J3_Vic}"/>
+            <Label Content="Nb vic J4 :" Grid.Row="14"/>
+            <TextBox Grid.Column="1" Grid.Row="14" Text="{Binding J4_Vic}"/>
+            <Label Content="Nb vic J5 :" Grid.Row="15"/>
+            <TextBox Grid.Column="1" Grid.Row="15" Text="{Binding J5_Vic}"/>
+            <Label Content="Nb vic requises :" Grid.Row="16"/>
+            <TextBox Grid.Column="1" Grid.Row="16" Text="{Binding NbVicRequise}"/>
+            <Label Content="Nb Joueurs :" Grid.Row="17"/>
+            <TextBox Grid.Column="1" Grid.Row="17" Text="{Binding NbJoeurs}"/>
+            <Label Content="Nb Parties :" Grid.Row="18"/>
+            <TextBox Grid.Column="1" Grid.Row="18" Text="{Binding NbPartie}"/>
+        </Grid>
+    </Grid>
+</UserControl>
