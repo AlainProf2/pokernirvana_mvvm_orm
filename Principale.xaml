@@ -9,7 +9,7 @@
     <Grid>
 
         <Grid.Background>
-            <ImageBrush Opacity="0.3" ImageSource="View/Images/table.jpg"/>
+            <ImageBrush Opacity="0.7" ImageSource="View/Images/table.jpg"/>
         </Grid.Background>
 
         <Grid.RowDefinitions>
