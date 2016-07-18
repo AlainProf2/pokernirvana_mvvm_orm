@@ -9,8 +9,7 @@
         <Button Name="btnCreationTournoisParties" Canvas.Top="80" Click="CreationTournoisParties">Création tournois/parties</Button>
         <Button Name="btnReprise" Canvas.Top="120" Click="Reprise">Reprise</Button>
         <Button Name="btnStatistiques" Canvas.Top="160" Click="Statistiques">Statistiques</Button>
-        <Button Name="btnJouer" Canvas.Top="200" Click="Jouer">Jouer</Button>
-        <Button Name="btnTournoisListe" Canvas.Top="240" Click="TournoisListe">Liste tournois</Button>
-        <Button Name="btnTournoisParties" Canvas.Top="280" Click="TournoisParties">Parties des tournois</Button>
+        <Button Name="btnTournoisListe" Canvas.Top="200" Click="TournoisListe">Liste tournois</Button>
+        <Button Name="btnTournoisParties" Canvas.Top="240" Click="TournoisParties">Parties des tournois</Button>
     </Canvas>
 </UserControl>

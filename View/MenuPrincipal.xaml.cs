@@ -40,11 +40,6 @@ namespace PokerNirvana_MVVM_ORM.View
             ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new Connexion());
         }
 
-        private void Jouer(object sender, RoutedEventArgs e)
-        {
-            ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
-        }
-
         private void InformationMembre(object sender, RoutedEventArgs e)
         {
             ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new InfoMembre());
