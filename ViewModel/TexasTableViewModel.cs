@@ -109,7 +109,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
                 NouvellePartie = false;
                 iPartieRepo partieRepo = new PartieRepo();
                 partieCourante =partieRepo.RecupUnePartie((int)TrousseGlobale.NumPartie);
-                Titre = "Partie " + partieCourante.Numero + ", main " + partieCourante.Numero_Main + ". Joueur: " + TrousseGlobale.NomJoueurLogue;
+                Titre = "Poker Nirvana, Partie " + partieCourante.Numero + ", main " + partieCourante.Numero_Main + ". Joueur: " + TrousseGlobale.NomJoueurLogue;
 
                 iMainRepo mainRepo = new MainRepo();
                 uneMain mainCourante = mainRepo.RecupUneMain(partieCourante.Numero, partieCourante.Numero_Main);
