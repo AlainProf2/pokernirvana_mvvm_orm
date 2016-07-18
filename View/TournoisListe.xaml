@@ -28,7 +28,6 @@
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding Numero}" FontSize="20"/>
-                        <TextBlock Text="{Binding Debut}" FontSize="20"/>
                         <TextBlock Text="{Binding Gagnant}" FontSize="14"/>
                     </StackPanel>
                 </DataTemplate>
