@@ -50,5 +50,6 @@ Temporary Items
 *.suo
 *.exe
 *.pdb
-.obj/debug/*
+obj/debug/*
+obj/Debug/PokerNirvana_MVVM_ORM.csproj.FileListAbsolute.txt
 
