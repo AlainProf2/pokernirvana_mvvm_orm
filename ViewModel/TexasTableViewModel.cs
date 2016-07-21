@@ -2,13 +2,9 @@
 using PokerNirvana_MVVM_ORM.ViewModel.ORM;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -113,7 +109,9 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
 
                 iMainRepo mainRepo = new MainRepo();
                 uneMain mainCourante = mainRepo.RecupUneMain(partieCourante.Numero, partieCourante.Numero_Main);
-                
+                TrousseGlobale.Bouton = mainCourante.Bouton; 
+               
+
                 JoueurRepo joueurRepo =  new JoueurRepo();
                 LesJoueurs = joueurRepo.RecupJoueursDunePartie(partieCourante.Numero);
                
@@ -145,14 +143,14 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
 
                 HistoriqueRepo HistoRepo = new HistoriqueRepo();
                 MsgHistorique = HistoRepo.RecupHistoriqueDunePartie(partieCourante.Numero);
-                
-         
 
-            //partieCourante = new PartieActive(TrousseGlobale.NomJoueurLogue,
-            //                         (int)TrousseGlobale.NumPartie,
-            //                         NouvellePartie,
-            //                         1973);
-               //partieCourante.Joue("", "Texas");
+
+
+                partieCourante = new PartieActive(TrousseGlobale.NomJoueurLogue,
+                                         (int)TrousseGlobale.NumPartie,
+                                         NouvellePartie,
+                                         1973);
+               // partieCourante.Joue("", "Texas");
             }
         }
 

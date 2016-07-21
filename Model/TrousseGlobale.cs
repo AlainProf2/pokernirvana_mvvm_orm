@@ -20,6 +20,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         public static int    PosJoueurLogue;
         public static string EtatDuJoueur;
         public static string Contexte;
+        public static int Bouton;
 
         public static string DernierRefresh;
 

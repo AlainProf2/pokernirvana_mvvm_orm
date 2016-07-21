@@ -38,15 +38,17 @@ namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction trx = session.BeginTransaction())
             {
-                IQuery sel = session.CreateQuery("from Historique where NumeroPartie = " + NumPartie);
+                IQuery sel = session.CreateQuery("from Historique where NumeroPartie = " + NumPartie + " order by Numero_Evenement desc");
                 List<Historique>ListeHisto = new List<Historique>(sel.List<Historique>());
 
                 trx.Commit();
 
                 string Desc = "";
+                int cmp = ListeHisto.Count;
                 foreach(Historique H in ListeHisto)
                 {
-                    Desc += H.Description + "\n-------\n";
+                    Desc += cmp + "- " + H.Description + "\n";
+                    cmp--;
                 }
                 return Desc;
             }

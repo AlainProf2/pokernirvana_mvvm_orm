@@ -30,8 +30,14 @@ namespace PokerNirvana_MVVM_ORM.Model
         virtual public void InitImage(uneMain laMain)
         {
             string FicNom = TrousseGlobale.PathImage + "joueurs/" + Pokerman + ".jpg";
-
-            ImagePokerman = new BitmapImage(new Uri(FicNom));
+            try
+            {
+                ImagePokerman = new BitmapImage(new Uri(FicNom));
+            }
+            catch
+            {
+                ImagePokerman = new BitmapImage(new Uri(TrousseGlobale.PathImage + "joueurs/inconnu.jpg"));
+            }
             Carte c0;
             Carte c1;
 

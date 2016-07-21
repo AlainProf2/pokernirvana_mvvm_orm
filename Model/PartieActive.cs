@@ -561,7 +561,7 @@ namespace PokerNirvana_MVVM_ORM.Model
           //{
           //    return false;
           //}
-          return true;		 
+           return true;		 
        }
         /**************************************
         *
@@ -2361,11 +2361,11 @@ namespace PokerNirvana_MVVM_ORM.Model
         /---------------------------------------------------------------*/
         private void afficheBouton()
         {
-            //laTable.Bouton_A.Visibility = Visibility.Collapsed;
-            //laTable.Bouton_B.Visibility = Visibility.Collapsed;
-            //laTable.Bouton_C.Visibility = Visibility.Collapsed;
-            //laTable.Bouton_D.Visibility = Visibility.Collapsed;
-            //laTable.Bouton_E.Visibility = Visibility.Collapsed;
+            laTable.Bouton_A.Visibility = Visibility.Collapsed;
+            laTable.Bouton_B.Visibility = Visibility.Collapsed;
+            laTable.Bouton_C.Visibility = Visibility.Collapsed;
+            laTable.Bouton_D.Visibility = Visibility.Collapsed;
+            laTable.Bouton_E.Visibility = Visibility.Collapsed;
             //laTable.Bouton_F.Visibility = Visibility.Collapsed;
 
             //switch (Bouton)
