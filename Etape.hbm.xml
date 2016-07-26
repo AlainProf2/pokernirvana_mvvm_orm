@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="PokerNirvana_MVVM_ORM"
+                   namespace="PokerNirvana_MVVM_ORM.Model">
+  <class name="Etape" table="etapes">
+    <composite-id>
+      <key-property name="Num_Partie"/>
+      <key-property name="Num_Main"/>
+      <key-property name="NomEtape"/>
+    </composite-id>
+    <property name="ProchainJoueur" />
+    <property name="Date_Evenement" />
+    <property name="Num_Tour" />
+  </class>
+</hibernate-mapping>

@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Etape.cs" />
     <Compile Include="Model\Historique.cs" />
     <Compile Include="Model\iHistoriqueRepo.cs" />
     <Compile Include="Model\iMainRepo.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Model\Membre.cs" />
     <Compile Include="Model\Partie.cs" />
     <Compile Include="Model\Tournois.cs" />
+    <Compile Include="Model\ToursParole.cs" />
     <Compile Include="Model\TrousseGlobale.cs" />
     <Compile Include="Model\uneMain.cs" />
     <Compile Include="Principale.xaml.cs">
@@ -310,6 +312,12 @@
     <EmbeddedResource Include="Historique.hbm.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Etape.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="toursParole.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

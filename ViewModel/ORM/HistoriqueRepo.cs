@@ -33,7 +33,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
             }
         }
 
-        public string RecupHistoriqueDunePartie(int NumPartie)
+        public List<Historique> RecupHistoriqueDunePartie(int NumPartie)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction trx = session.BeginTransaction())
@@ -42,15 +42,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
                 List<Historique>ListeHisto = new List<Historique>(sel.List<Historique>());
 
                 trx.Commit();
-
-                string Desc = "";
-                int cmp = ListeHisto.Count;
-                foreach(Historique H in ListeHisto)
-                {
-                    Desc += cmp + "- " + H.Description + "\n";
-                    cmp--;
-                }
-                return Desc;
+                return ListeHisto;
             }
         }
     }

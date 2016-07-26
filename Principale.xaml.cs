@@ -19,8 +19,12 @@ using System.Diagnostics;
 using System.ComponentModel;
 using PokerNirvana_MVVM_ORM.ViewModel.Service;
 using PokerNirvana_MVVM_ORM.View;
+using PokerNirvana_MVVM_ORM.Model;
+using System.Windows;
+using System.Windows.Controls;
+using PokerNirvana_MVVM_ORM.View;
 
-namespace PokerNirvana_MVVM_ORM
+ namespace PokerNirvana_MVVM_ORM
 {
 	/// <summary>
 	/// Logique d'interaction pour Principal.xaml
@@ -33,6 +37,10 @@ namespace PokerNirvana_MVVM_ORM
             Configurer();
 
             presenteurContenu.Content = new MenuPrincipal();
+            TrousseGlobale.NumPartie = 335;
+
+            ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
+
 
         }
 

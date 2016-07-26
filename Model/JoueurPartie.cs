@@ -18,6 +18,8 @@ namespace PokerNirvana_MVVM_ORM.Model
         virtual public int Position { get; set; }
         virtual public int Capital { get; set; }
         virtual public string Etat { get; set; }
+        virtual public string Decision { get; set; }
+        virtual public int Engagement { get; set; }
         virtual public BitmapImage ImagePokerman { get; set; }
         virtual public BitmapImage ImageCarte0 { get; set; }
         virtual public BitmapImage ImageCarte1 { get; set; }

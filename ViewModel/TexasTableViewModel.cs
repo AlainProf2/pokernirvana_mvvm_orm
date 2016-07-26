@@ -77,15 +77,15 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
 
         
 
-        private List<JoueurPartie> lesJoueurs;
-        public List<JoueurPartie> LesJoueurs
-        {
-            get { return lesJoueurs; }
-            set
-            {
-                lesJoueurs = value;
-            }
-        }
+        //private List<JoueurPartie> lesJoueurs;
+        //public List<JoueurPartie> LesJoueurs
+        //{
+        //    get { return lesJoueurs; }
+        //    set
+        //    {
+        //        lesJoueurs = value;
+        //    }
+        //}
    
         private Partie partieCourante;
 
@@ -113,36 +113,46 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
                
 
                 JoueurRepo joueurRepo =  new JoueurRepo();
-                LesJoueurs = joueurRepo.RecupJoueursDunePartie(partieCourante.Numero);
-               
-                JoueurA = LesJoueurs[0];
+                TrousseGlobale.Joueurs = joueurRepo.RecupJoueursDunePartie(partieCourante);
+                
+
+                JoueurA = TrousseGlobale.Joueurs[0];
                 JoueurA.InitImage(mainCourante);
                 
-                JoueurB = LesJoueurs[1];
+                JoueurB = TrousseGlobale.Joueurs[1];
                 JoueurB.InitImage(mainCourante);
-                if (LesJoueurs.Count() > 2)
+                if (TrousseGlobale.Joueurs.Count() > 2)
                 {
-                    JoueurC = LesJoueurs[2];
+                    JoueurC = TrousseGlobale.Joueurs[2];
                     JoueurC.InitImage(mainCourante);
                 }
-                if (LesJoueurs.Count() > 3)
+                if (TrousseGlobale.Joueurs.Count() > 3)
                 {
-                    JoueurD = LesJoueurs[3];
+                    JoueurD = TrousseGlobale.Joueurs[3];
                     JoueurD.InitImage(mainCourante);
                 }
-                if (LesJoueurs.Count() > 4)
+                if (TrousseGlobale.Joueurs.Count() > 4)
                 {
-                    JoueurE = LesJoueurs[4];
+                    JoueurE = TrousseGlobale.Joueurs[4];
                     JoueurE.InitImage(mainCourante);
                 }
-                if (LesJoueurs.Count() > 5)
+                if (TrousseGlobale.Joueurs.Count() > 5)
                 {
-                    JoueurF = LesJoueurs[5];
+                    JoueurF = TrousseGlobale.Joueurs[5];
                     JoueurF.InitImage(mainCourante);
                 }
 
                 HistoriqueRepo HistoRepo = new HistoriqueRepo();
-                MsgHistorique = HistoRepo.RecupHistoriqueDunePartie(partieCourante.Numero);
+                List<Historique> ListeHisto = HistoRepo.RecupHistoriqueDunePartie(partieCourante.Numero);
+
+                string Desc = "";
+                int cmp = ListeHisto.Count;
+                foreach (Historique H in ListeHisto)
+                {
+                    Desc += cmp + "- " + H.Description + "\n";
+                    cmp--;
+                }
+                MsgHistorique = Desc;
 
 
 

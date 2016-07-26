@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="PokerNirvana_MVVM_ORM"
+                   namespace="PokerNirvana_MVVM_ORM.Model">
+  <class name="ToursParole">
+    <composite-id>
+      <key-property name="Num_Partie"/>
+      <key-property name="Num_Main"/>
+      <key-property name="NomEtape"/>
+      <key-property name="Num_Tour"/>
+    </composite-id>
+    <property name="Dec_J0" />
+    <property name="Eng_J0" />
+    <property name="Date_J0" />
+    <property name="Dec_J1" />
+    <property name="Eng_J1" />
+    <property name="Date_J1" />
+    <property name="Dec_J2" />
+    <property name="Eng_J2" />
+    <property name="Date_J2" />
+    <property name="Dec_J3" />
+    <property name="Eng_J3" />
+    <property name="Date_J3" />
+    <property name="Dec_J4" />
+    <property name="Eng_J4" />
+    <property name="Date_J4" />
+    <property name="Dec_J5" />
+    <property name="Eng_J5" />
+    <property name="Date_J5" />
+  </class>
+</hibernate-mapping>

@@ -11,6 +11,6 @@ namespace PokerNirvana_MVVM_ORM.Model
     {
         void Inserer(Historique c);
         void MAJ(Historique c);
-        string RecupHistoriqueDunePartie(int t);
+        List<Historique> RecupHistoriqueDunePartie(int t);
     }
 }

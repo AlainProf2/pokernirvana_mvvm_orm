@@ -28,6 +28,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         public static string PathImage = "pack://application:,,,/view/images/";
 
         public static long NumPartie;
+        public static List<JoueurPartie> Joueurs = new List<JoueurPartie>();
 
         public static BDService MaBD = new BDService();
 
