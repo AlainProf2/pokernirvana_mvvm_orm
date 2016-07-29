@@ -114,7 +114,7 @@ namespace PokerNirvana_MVVM_ORM.Model
           if (NouvellePartie)
           {
               //InitNouvellePartie();
-              //TrousseGlobale.Contexte = "RECHARGE_PARTIE_EN_COURS";
+              //TG.Contexte = "RECHARGE_PARTIE_EN_COURS";
           }
           else
               ReCharge(RD);
@@ -146,8 +146,8 @@ namespace PokerNirvana_MVVM_ORM.Model
           Bouton = 0;
 
           InsertionPremiereMain();
-          //TrousseGlobale.AjouteHistorique("Début de la partie " + Numero, Numero);
-          //TrousseGlobale.DernierRefresh = TrousseGlobale.GetDernierHistorique();
+          //TG.AjouteHistorique("Début de la partie " + Numero, Numero);
+          //TG.DernierRefresh = TG.GetDernierHistorique();
           ProchainJoueur = 1;
 	      NouvelleMain();
        }
@@ -177,7 +177,7 @@ namespace PokerNirvana_MVVM_ORM.Model
           // Une partie en cours existe, nous la poursuivons
           //Etape = resMain[0][0];
 
-          //TrousseGlobale.DernierRefresh = TrousseGlobale.GetDernierHistorique();
+          //TG.DernierRefresh = TG.GetDernierHistorique();
           ResteDelai    	 = RD;  
 	      bool MainTerminee = SelBoutonEtEtape();
 		
@@ -238,24 +238,24 @@ namespace PokerNirvana_MVVM_ORM.Model
     {
     
 	  case "ABANDONNER":
-        //TrousseGlobale.AjouteHistorique(joueur + " abandonne", Numero);
+        //TG.AjouteHistorique(joueur + " abandonne", Numero);
 		Joueurs[Position].Decision = "ABANDONNER";
         break;
       case "GRATOS":
-        //TrousseGlobale.AjouteHistorique(joueur + " y va gratos", Numero);
+        //TG.AjouteHistorique(joueur + " y va gratos", Numero);
 		   Decision = "SUIVRE";
 		break;   
       case "SUIVRE":
 		if (deltaPourSuivre >= Joueurs[Position].Capital)
 		{
 		   Decision = "ALL_IN_SUIVRE";
-           ////TrousseGlobale.AjouteHistorique(joueur + " suit ALL_IN", Numero);
+           ////TG.AjouteHistorique(joueur + " suit ALL_IN", Numero);
 		   Joueurs[Position].Engagement += Joueurs[Position].Capital;
 		   Joueurs[Position].Capital = 0;
         }		   
 		else
         {
-            //TrousseGlobale.AjouteHistorique(joueur + " suit", Numero);
+            //TG.AjouteHistorique(joueur + " suit", Numero);
 		   Joueurs[Position].Engagement = NiveauPourSuivre;
 		   Joueurs[Position].Capital -= deltaPourSuivre;
 		}
@@ -263,7 +263,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         break;
       
 	  case "RELANCER DE:":
-        //Relance = TrousseGlobale.Relance;
+        //Relance = TG.Relance;
 
         
         JoueurLogue= ConvertNomToNum(joueur);
@@ -276,12 +276,12 @@ namespace PokerNirvana_MVVM_ORM.Model
         if (Joueurs[Position].Capital <= 0)
         {
            Decision = "ALL_IN_RELANCER";
-           //TrousseGlobale.AjouteHistorique(joueur + " relance ALL_IN", Numero);
+           //TG.AjouteHistorique(joueur + " relance ALL_IN", Numero);
         }		   
 		else
 		{
            Decision = "RELANCER";
-           //TrousseGlobale.AjouteHistorique(joueur + " relance de " + Relance, Numero);
+           //TG.AjouteHistorique(joueur + " relance de " + Relance, Numero);
 		}
 		break;
     }
@@ -403,7 +403,7 @@ namespace PokerNirvana_MVVM_ORM.Model
       case ("MISE_PARALYSEE"):
         DetermineProchaineEtape();
 		if (From != "RECUR")
-           //TrousseGlobale.AjouteHistorique("Mise bloquée " + Etape, Numero);
+           //TG.AjouteHistorique("Mise bloquée " + Etape, Numero);
 
         // Insertion de la prochaine Etape de mise de la main courante
         insertNouvelleEtape();    
@@ -444,7 +444,7 @@ namespace PokerNirvana_MVVM_ORM.Model
       case ("MISE_TERMINEE_MAIN_CONTINUE"):
       
         DetermineProchaineEtape();
-        //TrousseGlobale.AjouteHistorique("On passe à: " + Etape, Numero);
+        //TG.AjouteHistorique("On passe à: " + Etape, Numero);
  
         // Insertion de la prochaine Etape de mise de la prochaine main courante
         insertNouvelleEtape();    
@@ -866,7 +866,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         "NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
 
      //MaBd.Insert(ins);
-     //TrousseGlobale.AjouteHistorique(ConvertNumToNom(Bouton) + " distribue la main " + Numero_Main, Numero);
+     //TG.AjouteHistorique(ConvertNumToNom(Bouton) + " distribue la main " + Numero_Main, Numero);
   }
 
 
@@ -886,14 +886,14 @@ namespace PokerNirvana_MVVM_ORM.Model
 
 	  int GrosBlindTheo = 2 * PetitBlindTheo;
 	  
-      //TrousseGlobale.AjouteHistorique("Gros blind: " + GrosBlindTheo, Numero);
+      //TG.AjouteHistorique("Gros blind: " + GrosBlindTheo, Numero);
 	  // On déduit les valeurs Engagement et Decision du joueur petit blind
 	  if (P_K <= PetitBlindTheo) 
 	  {
 		 if ( (P_K > G_K) &&
 		      (P_K > UTG_K))
 		 {
-            //Joueurs[PB].Engagement =  TrousseGlobale.maxEntre(G_K, UTG_K);
+            //Joueurs[PB].Engagement =  TG.maxEntre(G_K, UTG_K);
             Joueurs[PB].Capital -=	Joueurs[PB].Engagement;		
 		    Joueurs[PB].Decision = "PETIT_BLIND";
 
@@ -911,7 +911,7 @@ namespace PokerNirvana_MVVM_ORM.Model
 	  else
 	  {
 	     // Capital du Joueur Petit blind > Petit Blind théorique
-		 //Joueurs[PB].Engagement =  TrousseGlobale.minEntre( TrousseGlobale.maxEntre(G_K, UTG_K),PetitBlindTheo);
+		 //Joueurs[PB].Engagement =  TG.minEntre( TG.maxEntre(G_K, UTG_K),PetitBlindTheo);
 
 		 Joueurs[PB].Capital -= Joueurs[PB].Engagement ;
 		 Joueurs[PB].Decision = "PETIT_BLIND";
@@ -924,7 +924,7 @@ namespace PokerNirvana_MVVM_ORM.Model
       {
 	    //tr(" Gros blind dominant");
 	    Joueurs[GB].Decision = "GROS_BLIND";
-		//Joueurs[GB].Engagement =  TrousseGlobale.minEntre(GrosBlindTheo,  TrousseGlobale.maxEntre(P_K, UTG_K));
+		//Joueurs[GB].Engagement =  TG.minEntre(GrosBlindTheo,  TG.maxEntre(P_K, UTG_K));
 		Joueurs[GB].Capital -= Joueurs[GB].Engagement;
 		//tr(" Engagement: ( GB ) " .  Joueurs[GB].Engagement);
 	  }
@@ -933,7 +933,7 @@ namespace PokerNirvana_MVVM_ORM.Model
 	    if (G_K > GrosBlindTheo)
 		{
 	        Joueurs[GB].Decision = "GROS_BLIND";
-		    //Joueurs[GB].Engagement =  TrousseGlobale.minEntre(GrosBlindTheo, UTG_K);
+		    //Joueurs[GB].Engagement =  TG.minEntre(GrosBlindTheo, UTG_K);
 
 		    Joueurs[GB].Capital -= Joueurs[GB].Engagement;
 	    }
@@ -970,11 +970,11 @@ namespace PokerNirvana_MVVM_ORM.Model
 		else
 		{
 	      Joueurs[GB].Decision = "GROS_BLIND";
-  		  //Joueurs[GB].Engagement = TrousseGlobale.minEntre(GrosBlindTheo, G_K);
+  		  //Joueurs[GB].Engagement = TG.minEntre(GrosBlindTheo, G_K);
 	      Joueurs[GB].Capital -= Joueurs[GB].Engagement ;
 		}
 	  }
-	  //NiveauPourSuivre =  TrousseGlobale.maxEntre(Joueurs[PB].Engagement,Joueurs[GB].Engagement);
+	  //NiveauPourSuivre =  TG.maxEntre(Joueurs[PB].Engagement,Joueurs[GB].Engagement);
 	  string upd = "update main set NiveauPourSuivre = " + NiveauPourSuivre +
 	          " where num_partie = " + Numero + " and num_main = " + Numero_Main;
       //MaBd.Update(upd); 
@@ -1133,11 +1133,11 @@ namespace PokerNirvana_MVVM_ORM.Model
           //         Joueurs[i].Decision = res1[0][i * 2];
           //         Joueurs[i].Engagement =  Convert.ToInt32(res1[0][(i*2)+1]);
           //         //if (Joueurs[i].Decision == "ABANDONNER")
-          //         //  Joueurs[i].ImagePokerman = new BitmapImage(new Uri(TrousseGlobale.PathImage + "galerie/Abandonner.jpg")); 
+          //         //  Joueurs[i].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "galerie/Abandonner.jpg")); 
           //         //if (Joueurs[i].Decision == "MORT")
-          //         //  Joueurs[i].ImagePokerman = new BitmapImage(new Uri(TrousseGlobale.PathImage + "galerie/Mort.jpg"));
+          //         //  Joueurs[i].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "galerie/Mort.jpg"));
           //         //if (Joueurs[i].Decision == "ALL_IN_SUIVRE" || Joueurs[i].Decision == "ALL_IN_RELANCER")
-          //         //   Joueurs[i].ImagePokerman = new BitmapImage(new Uri(TrousseGlobale.PathImage + "galerie/AllIn.jpg"));
+          //         //   Joueurs[i].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "galerie/AllIn.jpg"));
           //     }
           //}
         }
@@ -1181,7 +1181,7 @@ namespace PokerNirvana_MVVM_ORM.Model
  /---------------------------------------------------------------*/
   private void TransitionUsuelle(string statut)
   {
-    string JoueurSession = "Tigars"; //TrousseGlobale.PokermanJoueurLogue.ToLower();
+    string JoueurSession = "Tigars"; //TG.PokermanJoueurLogue.ToLower();
     //string js = JoueurSession;
     //string pj = ConvertNumToNom(ProchainJoueur);
 	  
@@ -1193,7 +1193,7 @@ namespace PokerNirvana_MVVM_ORM.Model
       //}
 	  //else
 	  {
-        //TrousseGlobale.changeEtat("Réflexion");
+        //TG.changeEtat("Réflexion");
         OptionsDuJoueur();
 	  }
     }
@@ -1216,7 +1216,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         /*--------------------------------------------------------------
          /
          /---------------------------------------------------------------*/
-        public void Joue(string statut, string denouement)
+        public void Joue(string statut, string denouement) 
         {
            switch(statut)
            {
@@ -1352,7 +1352,7 @@ namespace PokerNirvana_MVVM_ORM.Model
          {
              MsgAttente = GagnantsMain + " gagne(nt) la main! On attend que "  + Joueurs[ProchainBouton].Pokerman + " passe les carte";
              laTable.TB_MsgAttente.DataContext = this;
-             //TrousseGlobale.OuvrirEcran(laTable, "Texas");
+             //TG.OuvrirEcran(laTable, "Texas");
          }
      }
      else
@@ -1403,7 +1403,7 @@ namespace PokerNirvana_MVVM_ORM.Model
 	                           " where numero = " + Numero;
             //MaBd.Update(upd);
             int BoutonTmp = GetNextBouton();
-            //TrousseGlobale.AjouteHistorique("Main " + (Numero_Main + 1) + " début.\nBouton:" + Joueurs[BoutonTmp].Pokerman,1);
+            //TG.AjouteHistorique("Main " + (Numero_Main + 1) + " début.\nBouton:" + Joueurs[BoutonTmp].Pokerman,1);
 
           }
 
@@ -1494,13 +1494,13 @@ namespace PokerNirvana_MVVM_ORM.Model
         //    switch (DEC)
         //    {
         //      case "ABANDONNER":
-        //        TrousseGlobale.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " abandonne",1);
+        //        TG.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " abandonne",1);
         //        Joueurs[JoueurLogue].Decision = "ABANDONNER";
-        //        Joueurs[JoueurLogue].ImagePokerman = new BitmapImage(new Uri(TrousseGlobale.PathImage + "Galerie/Abandonner.jpg")); 
+        //        Joueurs[JoueurLogue].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "Galerie/Abandonner.jpg")); 
         //        break;
 
         //      case "GRATOS":
-        //        TrousseGlobale.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " y va gratos", 1);
+        //        TG.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " y va gratos", 1);
         //        DEC = "SUIVRE";
         //        break;   
 
@@ -1508,13 +1508,13 @@ namespace PokerNirvana_MVVM_ORM.Model
         //        if (deltaPourSuivre >= Joueurs[JoueurLogue].Capital)
         //        {
         //           DEC  = "ALL_IN_SUIVRE";
-        //           TrousseGlobale.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " suit ALL_IN", 1);
+        //           TG.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " suit ALL_IN", 1);
         //           Joueurs[JoueurLogue].Engagement += Joueurs[JoueurLogue].Capital;
         //           Joueurs[JoueurLogue].Capital = 0;
         //        }		   
         //        else
         //        {
-        //            TrousseGlobale.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " suit", 1);
+        //            TG.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " suit", 1);
         //           Joueurs[JoueurLogue].Engagement = NiveauPourSuivre;
         //           Joueurs[JoueurLogue].Capital -= deltaPourSuivre;
         //        }
@@ -1531,11 +1531,11 @@ namespace PokerNirvana_MVVM_ORM.Model
         //        if (Joueurs[JoueurLogue].Capital <= 0)
         //        {  
         //          DEC = "ALL_IN_RELANCER";
-        //          TrousseGlobale.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " relance ALL_IN", 1);
+        //          TG.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " relance ALL_IN", 1);
         //        }		   
         //        else
         //        {
-        //            TrousseGlobale.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " relance de " + Relance, 1);
+        //            TG.AjouteHistorique(Joueurs[JoueurLogue].Pokerman + " relance de " + Relance, 1);
         //        }
         //        break;
         //      }
@@ -1608,7 +1608,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         /---------------------------------------------------------------*/
         private void TraitementMainTermine(string denouement)
         {	
-          //TrousseGlobale.AjouteHistorique("Main " + Numero_Main + " terminée", Numero);
+          //TG.AjouteHistorique("Main " + Numero_Main + " terminée", Numero);
 
           string TypeDeFin;
           if (denouement == "DOMINATION")
@@ -1632,7 +1632,7 @@ namespace PokerNirvana_MVVM_ORM.Model
   
           if (Terminee())
           {
-            //TrousseGlobale.AjouteHistorique("PARTIE TERMINÉE", Numero);
+            //TG.AjouteHistorique("PARTIE TERMINÉE", Numero);
    	        Joue("PARTIE_TERMINEE", denouement);
           }
           else
@@ -1680,7 +1680,7 @@ namespace PokerNirvana_MVVM_ORM.Model
                 }
 	         }
         //     if (NbActif > 1)
-        //         TrousseGlobale.AjouteHistorique(Message, Numero);
+        //         TG.AjouteHistorique(Message, Numero);
         }
 
        /*--------------------------------------------------------------
@@ -2161,7 +2161,7 @@ namespace PokerNirvana_MVVM_ORM.Model
             if (true)
             {
                 int ProchainBouton = GetNextBouton();
-                //if (TrousseGlobale.PosJoueurLogue == ProchainBouton)
+                //if (TG.PosJoueurLogue == ProchainBouton)
                 //{
                 //    msg = "A toi de passer les cartes.\n";
                 //    laTable.bout_Distribuer.Visibility = Visibility.Visible;
@@ -2172,7 +2172,7 @@ namespace PokerNirvana_MVVM_ORM.Model
                 //    msg = "On attend que " + Joueurs[ProchainBouton].Pokerman + " distribue les cartes\n";
                 //}
             }
-            else
+             else
             {
                 //msg = "On attend la décision de \n"
                 // + Joueurs[Convert.ToInt32(Resultat[0][0])].Pokerman

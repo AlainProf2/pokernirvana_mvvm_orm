@@ -1,5 +1,7 @@
 ﻿using PokerNirvana_MVVM_ORM.Model;
+using PokerNirvana_MVVM_ORM.View;
 using PokerNirvana_MVVM_ORM.ViewModel.ORM;
+using PokerNirvana_MVVM_ORM.ViewModel.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -92,53 +94,74 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         private DispatcherTimer delai = new DispatcherTimer();
         bool NouvellePartie = true;
 
+
+        private void Abandonner(object param)
+        {
+            TG.EtatDuJoueur = "";
+            changeEtat();
+            TG.Joueurs[TG.PosJoueurLogue].Decision = "ABANDONNER";
+            ToursParoleRepo TPR = new ToursParoleRepo();
+            TPR.MAJ();
+
+
+            ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
+            //TG.Relance = Convert.ToInt32(CB_ValRelance.Text);
+
+            // partieCourante.AppliqueDecision(TG.NomJoueurLogue,
+            //                                 TG.PosJoueurLogue,
+            //                                 Decision);
+            //partieCourante.ConsequenceDeLaDecision("Texas");
+            //partieCourante.Joue("", "Texas");
+        }
+
         public TexasTableViewModel()
         {
             cmdAbandonner = new Command(Abandonner);
-            TrousseGlobale.NomJoueurLogue = "Pough";
+            if (TG.NomJoueurLogue == null)
+                TG.NomJoueurLogue = "pough";
             
             recupEtatJoueur();
             traiteDelai();
 
-            if (TrousseGlobale.Contexte == "RECHARGE_PARTIE_EN_COURS")
+            if (TG.Contexte == "RECHARGE_PARTIE_EN_COURS")
             {
                 NouvellePartie = false;
                 iPartieRepo partieRepo = new PartieRepo();
-                partieCourante =partieRepo.RecupUnePartie((int)TrousseGlobale.NumPartie);
-                Titre = "Poker Nirvana, Partie " + partieCourante.Numero + ", main " + partieCourante.Numero_Main + ". Joueur: " + TrousseGlobale.NomJoueurLogue;
+                partieCourante =partieRepo.RecupUnePartie((int)TG.NumPartie);
+                Titre = "Poker Nirvana, Partie " + partieCourante.Numero + ", main " + partieCourante.Numero_Main + ". Joueur: " + TG.NomJoueurLogue;
 
                 iMainRepo mainRepo = new MainRepo();
                 uneMain mainCourante = mainRepo.RecupUneMain(partieCourante.Numero, partieCourante.Numero_Main);
-                TrousseGlobale.Bouton = mainCourante.Bouton; 
+                TG.Bouton = mainCourante.Bouton; 
                
 
                 JoueurRepo joueurRepo =  new JoueurRepo();
-                TrousseGlobale.Joueurs = joueurRepo.RecupJoueursDunePartie(partieCourante);
+                TG.Joueurs = joueurRepo.RecupJoueursDunePartie(partieCourante);
                 
 
-                JoueurA = TrousseGlobale.Joueurs[0];
+                JoueurA = TG.Joueurs[0];
                 JoueurA.InitImage(mainCourante);
                 
-                JoueurB = TrousseGlobale.Joueurs[1];
+                JoueurB = TG.Joueurs[1];
                 JoueurB.InitImage(mainCourante);
-                if (TrousseGlobale.Joueurs.Count() > 2)
+                if (TG.Joueurs.Count() > 2)
                 {
-                    JoueurC = TrousseGlobale.Joueurs[2];
+                    JoueurC = TG.Joueurs[2];
                     JoueurC.InitImage(mainCourante);
                 }
-                if (TrousseGlobale.Joueurs.Count() > 3)
+                if (TG.Joueurs.Count() > 3)
                 {
-                    JoueurD = TrousseGlobale.Joueurs[3];
+                    JoueurD = TG.Joueurs[3];
                     JoueurD.InitImage(mainCourante);
                 }
-                if (TrousseGlobale.Joueurs.Count() > 4)
+                if (TG.Joueurs.Count() > 4)
                 {
-                    JoueurE = TrousseGlobale.Joueurs[4];
+                    JoueurE = TG.Joueurs[4];
                     JoueurE.InitImage(mainCourante);
                 }
-                if (TrousseGlobale.Joueurs.Count() > 5)
+                if (TG.Joueurs.Count() > 5)
                 {
-                    JoueurF = TrousseGlobale.Joueurs[5];
+                    JoueurF = TG.Joueurs[5];
                     JoueurF.InitImage(mainCourante);
                 }
 
@@ -156,8 +179,8 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
 
 
 
-                partieCourante = new PartieActive(TrousseGlobale.NomJoueurLogue,
-                                         (int)TrousseGlobale.NumPartie,
+                partieCourante = new PartieActive(TG.NomJoueurLogue,
+                                         (int)TG.NumPartie,
                                          NouvellePartie,
                                          1973);
                // partieCourante.Joue("", "Texas");
@@ -170,9 +193,9 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         //-------------------------------------------
         private void ActionSynchro(object o, EventArgs e)
         {
-            //MessageBox.Show("Evenement de syncho" + TrousseGlobale.DernierRefresh);
-            string DernierHistorique = TrousseGlobale.GetDernierHistorique();
-            string DernierRef = TrousseGlobale.DernierRefresh;
+            //MessageBox.Show("Evenement de syncho" + TG.DernierRefresh);
+            string DernierHistorique = TG.GetDernierHistorique();
+            string DernierRef = TG.DernierRefresh;
 
             DernierHistorique = DernierHistorique.Replace("-", "");
             DernierHistorique = DernierHistorique.Replace(" ", "");
@@ -187,13 +210,13 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
                 // Un rafraichissement est nécessaire
 
 
-                TrousseGlobale.DernierRefresh = TrousseGlobale.GetDernierHistorique();
+                TG.DernierRefresh = TG.GetDernierHistorique();
                 //partieCourante.MAJMain();
                 //partieCourante.MAJEtape();
                 //partieCourante.MAJProchainJoueur();
                 //partieCourante.Joue("", "Synchro");
                 //partieCourante.Rafraichit();
-                //TrousseGlobale.OuvrirEcran(this, "Texas");
+                //TG.OuvrirEcran(this, "Texas");
             }
         }
 
@@ -202,12 +225,12 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         //-------------------------------------------
         private void recupEtatJoueur()
         {
-            TrousseGlobale.EtatDuJoueur = recupEtat();
+            TG.EtatDuJoueur = recupEtat();
 
-            if (TrousseGlobale.EtatDuJoueur == "Connecté")
-                TrousseGlobale.EtatDuJoueur = "DéjàConnecté";
-            if (TrousseGlobale.EtatDuJoueur == "")
-                TrousseGlobale.EtatDuJoueur = "Connecté";
+            if (TG.EtatDuJoueur == "Connecté")
+                TG.EtatDuJoueur = "DéjàConnecté";
+            if (TG.EtatDuJoueur == "")
+                TG.EtatDuJoueur = "Connecté";
 
             changeEtat();
         }
@@ -220,8 +243,8 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
             return "";
             
             string sel = "select Etat from JoueurPartie where pokerman = '" +
-                     TrousseGlobale.NomJoueurLogue + "' and numero_partie=" + TrousseGlobale.NumPartie;
-            List<string>[] res = TrousseGlobale.MaBD.Select(sel);
+                     TG.NomJoueurLogue + "' and numero_partie=" + TG.NumPartie;
+            List<string>[] res = TG.MaBD.Select(sel);
             return res[0][0];
         }
 
@@ -230,33 +253,16 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         //-------------------------------------------
         private void changeEtat()
         {
-            string upd = "update joueurPartie set Etat='" + TrousseGlobale.EtatDuJoueur +
-                "' where pokerman = '" +
-                TrousseGlobale.NomJoueurLogue +
-                "' and numero_partie=" + TrousseGlobale.NumPartie;
-            TrousseGlobale.MaBD.Update(upd);
+            //string upd = "update joueurPartie set Etat='" + TG.EtatDuJoueur +
+            //    "' where pokerman = '" +
+            //    TG.NomJoueurLogue +
+            //    "' and numero_partie=" + TG.NumPartie;
+            //TG.MaBD.Update(upd);
         }
 
         //-------------------------------------------
         //	  
         //-------------------------------------------
-        private void Abandonner(object param)
-        {
-            TrousseGlobale.EtatDuJoueur = "";
-            changeEtat();
-
-
-            //Button cmd = (Button)e.OriginalSource;
-            //string Decision = (string)cmd.Content;
-            string Decision = "Abandonner";
-            //TrousseGlobale.Relance = Convert.ToInt32(CB_ValRelance.Text);
-
-           // partieCourante.AppliqueDecision(TrousseGlobale.NomJoueurLogue,
-           //                                 TrousseGlobale.PosJoueurLogue,
-           //                                 Decision);
-            //partieCourante.ConsequenceDeLaDecision("Texas");
-            //partieCourante.Joue("", "Texas");
-        }
 
         //-------------------------------------------
         //	  
@@ -275,13 +281,13 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
             //partieCourante.NouvelleMain();
 
             //partieCourante.Joue(partieCourante.Etape, "NeoMain");
-            //TrousseGlobale.OuvrirEcran(this, "Texas");
+            //TG.OuvrirEcran(this, "Texas");
         }
 
         private void GestionPartie(object sender, RoutedEventArgs e)
         {
             delai.Stop();
-            //TrousseGlobale.OuvrirEcran(this, "Accueil");
+            //TG.OuvrirEcran(this, "Accueil");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

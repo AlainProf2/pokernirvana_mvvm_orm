@@ -45,7 +45,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         {
             Valeur = -1;
             Sorte = -1;
-            imgCarte = new BitmapImage(new Uri(TrousseGlobale.PathImage + "Cartes/endos.gif"));
+            imgCarte = new BitmapImage(new Uri(TG.PathImage + "Cartes/endos.gif"));
         }
 
         public Carte(int v, int s)
@@ -54,7 +54,7 @@ namespace PokerNirvana_MVVM_ORM.Model
             Sorte = s;
             NomPhysique = GetNomTextuel();
             if (NomPhysique != "vide_vide.gif")
-                imgCarte = new BitmapImage(new Uri(TrousseGlobale.PathImage + "Cartes/" + NomPhysique));
+                imgCarte = new BitmapImage(new Uri(TG.PathImage + "Cartes/" + NomPhysique));
             else
                 imgCarte = null;
         }
@@ -65,14 +65,14 @@ namespace PokerNirvana_MVVM_ORM.Model
             Sorte = Convert.ToInt32(s);
             string NomTex = GetNomTextuel();
             if (NomTex != "vide_vide")
-                imgCarte = new BitmapImage(new Uri(TrousseGlobale.PathImage + "Cartes/" + NomTex));
+                imgCarte = new BitmapImage(new Uri(TG.PathImage + "Cartes/" + NomTex));
             else
                 imgCarte = null;
         }
 
         public void CacheImage()
         {
-            imgCarte = new BitmapImage(new Uri(TrousseGlobale.PathImage + "Cartes/endos.gif"));
+            imgCarte = new BitmapImage(new Uri(TG.PathImage + "Cartes/endos.gif"));
         }
 
 

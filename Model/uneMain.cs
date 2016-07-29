@@ -73,11 +73,11 @@ namespace PokerNirvana_MVVM_ORM.Model
        }
        virtual public void InitImage()
        {
-           //string FicNom = TrousseGlobale.PathImage + "Cartes/carreau_as.gif";
+           //string FicNom = TG.PathImage + "Cartes/carreau_as.gif";
            string FicNom = "C:\\Users\\alain\\Dropbox\\Aut2016\\5B6\\application\\PokerNirvana_MVVM_ORM\\View\\Images\\Cartes\\carreau_as.gif";
            ImageCarte0 = new BitmapImage(new Uri(FicNom));
 
-           FicNom = TrousseGlobale.PathImage + "Cartes/carreau_as.gif";
+           FicNom = TG.PathImage + "Cartes/carreau_as.gif";
            ImageCarte1 = new BitmapImage(new Uri(FicNom));
 
            ImageFlop0 = new BitmapImage(new Uri(FicNom));

@@ -28,9 +28,9 @@ namespace PokerNirvana_MVVM_ORM.Model
        public Club()
        {
 
-           string sel = "select pokerman from Joueur where Pokerman<>'" + TrousseGlobale.NomJoueurLogue + "'";
+           string sel = "select pokerman from Joueur where Pokerman<>'" + TG.NomJoueurLogue + "'";
            List<string>[] res;
-           res = TrousseGlobale.MaBD.Select(sel);
+           res = TG.MaBD.Select(sel);
 
            List<Joueur> lmTmp = new List<Joueur>();
            int i = 0;
@@ -81,7 +81,7 @@ namespace PokerNirvana_MVVM_ORM.Model
        public List<string> ConstruitListeJoueurPartie()
        {
            List<string> lstJoueurInvites = new List<string>();
-           //lstJoueurInvites.Add(TrousseGlobale.PokermanJoueurLogue);
+           //lstJoueurInvites.Add(TG.PokermanJoueurLogue);
            for (int i = 0; i < ListeDesJoueurs.Count; i++)
            {
                //if (ListeDesJoueurs[i].Inviter)

@@ -30,7 +30,7 @@ namespace PokerNirvana_MVVM_ORM.View
         private void OuvrirPartie(object sender, RoutedEventArgs e)
         {
             Button cmd = (Button)e.OriginalSource;
-            TrousseGlobale.NumPartie = Convert.ToUInt32(cmd.Content);
+            TG.NumPartie = Convert.ToInt32(cmd.Content);
 
             ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
         }

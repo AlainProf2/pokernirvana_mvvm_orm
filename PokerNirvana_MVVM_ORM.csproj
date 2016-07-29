@@ -89,6 +89,7 @@
     <Compile Include="ViewModel\ORM\NHibernateHelper.cs" />
     <Compile Include="ViewModel\ORM\PartieRepo.cs" />
     <Compile Include="ViewModel\ORM\TournoisRepo.cs" />
+    <Compile Include="ViewModel\ORM\ToursParoleRepo.cs" />
     <Compile Include="ViewModel\Service\IApplicationService.cs" />
     <Compile Include="ViewModel\Service\ServiceFactory.cs" />
     <Compile Include="ViewModel\TexasTableViewModel.cs" />
@@ -317,7 +318,14 @@
     <EmbeddedResource Include="Etape.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="toursParole.hbm.xml" />
+    <EmbeddedResource Include="toursParole.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\Joueurs\abandonner.jpg" />
+    <Resource Include="View\Images\Joueurs\allin.jpg" />
+    <Resource Include="View\Images\Joueurs\mort.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

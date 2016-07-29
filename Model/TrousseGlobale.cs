@@ -9,25 +9,33 @@ using PokerNirvana_MVVM_ORM.ViewModel;
 
 namespace PokerNirvana_MVVM_ORM.Model
 {
-    class TrousseGlobale
+    // TG pour Trousse Globale
+    class TG
     {
-        public TrousseGlobale()
+        public TG()
         {
 
         }
+
+        public static int NumTournoi;
+        public static int NumPartie;
+        public static int NumMain;
+        public static string Etape;
+        public static int NumTour;
 
         public static string NomJoueurLogue;
         public static int    PosJoueurLogue;
         public static string EtatDuJoueur;
         public static string Contexte;
         public static int Bouton;
+        public static int ProchainJoueur;
+
 
         public static string DernierRefresh;
 
         public static int Relance;
         public static string PathImage = "pack://application:,,,/view/images/";
 
-        public static long NumPartie;
         public static List<JoueurPartie> Joueurs = new List<JoueurPartie>();
 
         public static BDService MaBD = new BDService();
@@ -67,6 +75,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         **************************************/
         public static void GetPosition()
         {
+
             string sel = "select position from joueurPartie where pokerman = '" + NomJoueurLogue + "' and numero_partie = " + NumPartie;
             //List<string>[] res = MaBD.Select(sel);
             PosJoueurLogue = 0;//Convert.ToInt32(res[0][0]);
@@ -119,7 +128,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         **************************************/
         public static void changeEtat(string E)
         {
-            string upd = "update joueurPartie set Etat='" + E + "' where pokerman = '" + TrousseGlobale.NomJoueurLogue + "' and numero_partie=" + TrousseGlobale.NumPartie;
+            string upd = "update joueurPartie set Etat='" + E + "' where pokerman = '" + TG.NomJoueurLogue + "' and numero_partie=" + TG.NumPartie;
             //MaBD.Update(upd);
         }           
 
@@ -128,7 +137,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         **************************************/
         public static string recupEtat(string N)
         {
-            string sel = "select Etat from JoueurPartie where pokerman = '" + TrousseGlobale.NomJoueurLogue + "' and numero_partie=" + TrousseGlobale.NumPartie;
+            string sel = "select Etat from JoueurPartie where pokerman = '" + TG.NomJoueurLogue + "' and numero_partie=" + TG.NumPartie;
         //    List<string>[] res = MaBD.Select(sel);
         //    string Etat = res[0][0];
         //    return Etat; 

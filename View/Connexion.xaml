@@ -3,6 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Height="300" Width="300">
     <Grid>
+        <StackPanel>
         <Label Content="Connexion" FontSize="25"></Label>
+        <Button Click="ConnecteP">P</Button>
+            <Button Click="ConnecteCe">Ce</Button>
+            <Button Click="ConnecteCh">Ch</Button>
+            <Button Click="ConnecteG">G</Button>
+            <Button Click="ConnecteK">K</Button>
+            <Button Click="ConnecteS">S</Button>
+        </StackPanel>
     </Grid>
 </UserControl>

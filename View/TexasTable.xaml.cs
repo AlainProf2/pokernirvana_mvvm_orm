@@ -12,23 +12,52 @@ namespace PokerNirvana_MVVM_ORM.View
         public TexasTable()
         {
             InitializeComponent();
-            TrousseGlobale.Contexte = "RECHARGE_PARTIE_EN_COURS";
+            TG.Contexte = "RECHARGE_PARTIE_EN_COURS";
             DataContext = new PokerNirvana_MVVM_ORM.ViewModel.TexasTableViewModel();
-            eteintJoueursInactifs();
+            eteintJoueursInactifs(); 
             allumeBouton();
+            attenteOuAction();
+        }
+
+        private void attenteOuAction()
+        {
+            if (TG.ProchainJoueur == -1 ||
+                TG.ProchainJoueur == -2 ||
+                TG.ProchainJoueur == -3)
+            {
+                MessageBox.Show("Etape : " + TG.ProchainJoueur);
+                    return;
+            }
+
+            if (TG.NomJoueurLogue == TG.Joueurs[TG.ProchainJoueur].Pokerman)
+            {
+               // MessageBox.Show("Afficher les options possibles");
+            }
+            else
+            {
+                //                MessageBox.Show("
+                bout_Distribuer.Visibility = Visibility.Collapsed;
+                bout_Suivre.Visibility = Visibility.Collapsed;
+                bout_Abandonner.Visibility = Visibility.Collapsed;
+                bout_Relancer.Visibility = Visibility.Collapsed;
+                CB_ValRelance.Visibility = Visibility.Collapsed;
+                bout_Gestion.Visibility = Visibility.Collapsed;
+                bout_Distribuer.Visibility = Visibility.Collapsed;
+                TB_MsgAttente.Text = "On attend la décision de " + TG.Joueurs[TG.ProchainJoueur].Pokerman;
+             }
         }
 
         private void eteintJoueursInactifs()
         {
-            int NbJoueurs = TrousseGlobale.Joueurs.Count;
-            if (TrousseGlobale.Joueurs[0].Capital == 0)
+            int NbJoueurs = TG.Joueurs.Count;
+            if (TG.Joueurs[0].Decision == "MORT")
                J_A.Visibility = Visibility.Collapsed;
-            if (TrousseGlobale.Joueurs[1].Capital == 0)
+            if (TG.Joueurs[1].Decision == "MORT")
                 J_B.Visibility = Visibility.Collapsed;
 
             if (NbJoueurs > 2)
             {
-                if (TrousseGlobale.Joueurs[2].Capital == 0)
+                if (TG.Joueurs[2].Decision == "MORT")
                     J_C.Visibility = Visibility.Collapsed;
             }
             else
@@ -36,7 +65,7 @@ namespace PokerNirvana_MVVM_ORM.View
 
             if (NbJoueurs > 3)
             {
-                if (TrousseGlobale.Joueurs[3].Capital == 0)
+                if (TG.Joueurs[3].Decision == "MORT")
                     J_D.Visibility = Visibility.Collapsed;
             }
             else
@@ -44,7 +73,7 @@ namespace PokerNirvana_MVVM_ORM.View
 
             if (NbJoueurs > 4)
             {
-                if (TrousseGlobale.Joueurs[4].Capital == 0)
+                if (TG.Joueurs[4].Decision == "MORT")
                     J_E.Visibility = Visibility.Collapsed;
             }
             else
@@ -52,7 +81,7 @@ namespace PokerNirvana_MVVM_ORM.View
 
             if (NbJoueurs > 5)
             {
-                if (TrousseGlobale.Joueurs[5].Capital == 0)
+                if (TG.Joueurs[5].Decision == "MORT")
                     J_F.Visibility = Visibility.Collapsed;
             }
             else
@@ -70,7 +99,7 @@ namespace PokerNirvana_MVVM_ORM.View
             Bouton_E.Visibility = Visibility.Collapsed;
             Bouton_F.Visibility = Visibility.Collapsed;
 
-            switch (TrousseGlobale.Bouton)
+            switch (TG.Bouton)
             {
                 case (0) : 
                 Bouton_A.Visibility = Visibility.Visible;

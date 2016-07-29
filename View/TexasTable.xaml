@@ -56,7 +56,7 @@
         <Button x:Name="bout_Relancer" Content="RELANCER DE:" Command="{Binding cmdRelancer}" Width="93" Canvas.Left="10" Canvas.Top="112" />
         <ComboBox x:Name="CB_ValRelance" Width="42" Canvas.Left="108" Canvas.Top="112" Height="20"/>
         <Button Name="bout_Gestion" Content="Gestion des parties" Canvas.Left="10" Canvas.Top="160"/>
-        <Button Name="bout_Distribuer" Content="Distribuer les cartes" Canvas.Left="115" Canvas.Top="30"/>
+        <Button Name="bout_Distribuer" Content="Distribuer les cartes" Canvas.Left="115" Canvas.Top="10"/>
         <TextBlock Name="TB_MsgAttente" Text="{Binding MsgAttente}" FontSize="12" Canvas.Left="13" Canvas.Top="46"/>
     </Canvas>
 

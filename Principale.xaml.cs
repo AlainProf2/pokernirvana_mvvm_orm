@@ -37,7 +37,7 @@ using PokerNirvana_MVVM_ORM.View;
             Configurer();
 
             presenteurContenu.Content = new MenuPrincipal();
-            TrousseGlobale.NumPartie = 335;
+            TG.NumPartie = 335;
 
             ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
 

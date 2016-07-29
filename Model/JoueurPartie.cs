@@ -31,14 +31,22 @@ namespace PokerNirvana_MVVM_ORM.Model
        
         virtual public void InitImage(uneMain laMain)
         {
-            string FicNom = TrousseGlobale.PathImage + "joueurs/" + Pokerman + ".jpg";
+            string FicNom = TG.PathImage + "joueurs/" + Pokerman + ".jpg";
+            if (Decision == "ABANDONNER")
+                FicNom = TG.PathImage + "joueurs/Abandonner.jpg";
+            if (Decision == "MORT")
+                FicNom = TG.PathImage + "joueurs/Mort.jpg";
+            if (Decision == "ALL_IN_RELANCER")
+                FicNom = TG.PathImage + "joueurs/AllIn.jpg";
+            if (Decision == "ALL_IN_SUIVRE")
+                FicNom = TG.PathImage + "joueurs/AllIn.jpg";
             try
             {
                 ImagePokerman = new BitmapImage(new Uri(FicNom));
             }
             catch
             {
-                ImagePokerman = new BitmapImage(new Uri(TrousseGlobale.PathImage + "joueurs/inconnu.jpg"));
+                ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "joueurs/Abandonner.jpg"));
             }
             Carte c0;
             Carte c1;
@@ -89,6 +97,17 @@ namespace PokerNirvana_MVVM_ORM.Model
             ImageCarte1 = c1.imgCarte;
         }
 
+        public virtual void ImageAbandon()
+        {
+            try
+            {
+                ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "joueurs/abandonner.jpg"));
+            }
+            catch
+            {
+                ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "joueurs/inconnu.jpg"));
+            }
+        }
         public override bool Equals(object o)
         {
             return (object)this == o;

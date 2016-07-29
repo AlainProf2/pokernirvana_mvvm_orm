@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PokerNirvana_MVVM_ORM.Model;
+using PokerNirvana_MVVM_ORM.ViewModel.Service;
 
 namespace PokerNirvana_MVVM_ORM.View
 {
@@ -22,6 +24,40 @@ namespace PokerNirvana_MVVM_ORM.View
         public Connexion()
         {
             InitializeComponent();
+        }
+
+        private void ConnecteP(object sender, RoutedEventArgs e)
+        {
+            Aller335("pough"); 
+        }
+
+        private void Aller335(string pm)
+        {
+            TG.NomJoueurLogue = pm;
+            TG.NumPartie = 335;
+            TG.PosJoueurLogue = 2;
+            ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
+
+        }
+        private void ConnecteCh(object sender, RoutedEventArgs e)
+        {
+            Aller335("cheen");
+        }
+        private void ConnecteCe(object sender, RoutedEventArgs e)
+        {
+            Aller335("certs");
+        }
+        private void ConnecteG(object sender, RoutedEventArgs e)
+        {
+            Aller335("gos");
+        }
+        private void ConnecteK(object sender, RoutedEventArgs e)
+        {
+            Aller335("k");
+        }
+        private void ConnecteS(object sender, RoutedEventArgs e)
+        {
+            Aller335("speed");
         }
     }
 }

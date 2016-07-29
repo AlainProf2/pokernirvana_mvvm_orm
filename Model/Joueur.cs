@@ -144,14 +144,14 @@ namespace PokerNirvana_MVVM_ORM.Model
             Courriel = cour;
             Decision = dec;
             Engagement = 0;
-            ImagePokerman = new BitmapImage(new Uri(TrousseGlobale.PathImage + Pokerman + ".jpg"));
+            ImagePokerman = new BitmapImage(new Uri(TG.PathImage + Pokerman + ".jpg"));
 
             if (Capital + eng == 0)
             {
                 if (Decision != "PETIT_BLIND" && Decision != "GROS_BLIND")
                 {
                     Decision = "MORT";
-                    Uri monUri = new Uri(TrousseGlobale.PathImage + "galerie/Mort.jpg");
+                    Uri monUri = new Uri(TG.PathImage + "galerie/Mort.jpg");
                     ImagePokerman = new BitmapImage(monUri);
                 }
             }
@@ -179,7 +179,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         {
             Pokerman = n;
             Capital = c;
-            string fic = TrousseGlobale.PathImage + n + ".jpg";
+            string fic = TG.PathImage + n + ".jpg";
             ImagePokerman = new BitmapImage(new Uri(fic));
         }
 
