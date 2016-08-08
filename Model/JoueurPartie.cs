@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 
 namespace PokerNirvana_MVVM_ORM.Model
 {
-    class JoueurPartie
+    public class JoueurPartie
     {
         public JoueurPartie() 
         {
@@ -19,7 +19,9 @@ namespace PokerNirvana_MVVM_ORM.Model
         virtual public int Capital { get; set; }
         virtual public string Etat { get; set; }
         virtual public string Decision { get; set; }
+        virtual public DateTime DateDec { get; set; }
         virtual public int Engagement { get; set; }
+        virtual public int ValeurMainCourante { get; set; }
         virtual public BitmapImage ImagePokerman { get; set; }
         virtual public BitmapImage ImageCarte0 { get; set; }
         virtual public BitmapImage ImageCarte1 { get; set; }

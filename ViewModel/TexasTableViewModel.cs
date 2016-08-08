@@ -18,6 +18,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         public ICommand cmdRelancer { get; set; }
         public ICommand cmdAbandonner { get; set; }
 
+
         private string titre;
         public string Titre
         {
@@ -89,7 +90,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         //    }
         //}
    
-        private Partie partieCourante;
+        static private PartieActive partieCourante;
 
         private DispatcherTimer delai = new DispatcherTimer();
         bool NouvellePartie = true;
@@ -99,11 +100,20 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         {
             TG.EtatDuJoueur = "";
             changeEtat();
-            TG.Joueurs[TG.PosJoueurLogue].Decision = "ABANDONNER";
+
+            partieCourante.Joueurs[TG.PosJoueurLogue].Decision = "ABANDONNER";
             ToursParoleRepo TPR = new ToursParoleRepo();
-            TPR.MAJ();
+            TPR.MAJ(partieCourante);
+            int[] TabEng = new int[6];
+            string[] TabDec = new string[6];
+            for (int i = 0; i < partieCourante.Joueurs.Count; i++)
+                TabDec[i] = partieCourante.Joueurs[i].Decision;
+            for (int i = 0; i < partieCourante.Joueurs.Count; i++)
+                TabEng[i] = partieCourante.Joueurs[i].Engagement;
+            partieCourante.croupier = new Croupier(TabDec, TabEng, partieCourante.NiveauPourSuivre, TG.PosJoueurLogue, partieCourante.Etape, partieCourante.Bouton);
 
-
+            partieCourante.croupier.DetermineProchainJoueur("");
+      
             ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
             //TG.Relance = Convert.ToInt32(CB_ValRelance.Text);
 
@@ -176,13 +186,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
                     cmp--;
                 }
                 MsgHistorique = Desc;
-
-
-
-                partieCourante = new PartieActive(TG.NomJoueurLogue,
-                                         (int)TG.NumPartie,
-                                         NouvellePartie,
-                                         1973);
+                partieCourante = new PartieActive(NouvellePartie, 1973);
                // partieCourante.Joue("", "Texas");
             }
         }

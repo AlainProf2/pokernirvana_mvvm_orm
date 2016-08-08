@@ -9,7 +9,7 @@ namespace PokerNirvana_MVVM_ORM.Model
     public class Gestionnaire
     {
         public int NbJoueur = 6;
-        public Joueur[] TabJoueurs = new Joueur[6];
+        public List<JoueurPartie> TabJoueurs = new List<JoueurPartie>();
 
         public List<int> TabAllIn = new List<int>();
         public List<int> TabAllInTrie = new List<int>();
@@ -18,14 +18,14 @@ namespace PokerNirvana_MVVM_ORM.Model
         public List<int> TabGagnants = new List<int>();
         public List<int> GagnantsMainExport = new List<int>();
 
-        public Gestionnaire(Joueur[] TabJ)
+        public Gestionnaire(List<JoueurPartie> TabJ)
         {
             TabJoueurs = TabJ;
         }
         //----------------------------------------------
         //
         //----------------------------------------------
-        public Joueur[] TransfereLesCapitaux()
+        public List<JoueurPartie> TransfereLesCapitaux()
         {
 
             ConstruitTableaudesJoueursAllIn();
@@ -59,14 +59,12 @@ namespace PokerNirvana_MVVM_ORM.Model
                 // On retranche ce ALL-IN du tableau, son cas est traité
                 TabAllInTrie.RemoveAt(0);
             }
-            Console.WriteLine("Eng  final de Antoine: " + TabJoueurs[0].Engagement);
-            Console.WriteLine("Kap final de Antoine: " + TabJoueurs[0].Capital);
+           
             // Tous les ALL_IN (déficitaires) ont été traités
             // Il faut traiter les joueurs qui avaient les fonds pour suivre normalement
             ConstruitTabDesGagnants();
             RepartiLesGainsFinaux();
-            Console.WriteLine("Kap ultra final de Antoine: " + TabJoueurs[0].Capital);
-
+            
             return TabJoueurs;
         }
 

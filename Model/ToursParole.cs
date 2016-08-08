@@ -14,66 +14,67 @@ namespace PokerNirvana_MVVM_ORM.Model
          
         }
 
-        public ToursParole(bool Flag)
+        public ToursParole(PartieActive pa)
         {
-            Num_Partie = TG.NumPartie;
-            Num_Main = TG.NumMain;
-            NomEtape = TG.Etape;
-            Num_Tour = TG.NumTour;
+            Num_Partie = pa.Numero;
+            Num_Main = pa.Numero_Main;
+            NomEtape = pa.Etape;
+            Num_Tour = pa.Numero_Tournoi;
 
-            Dec_J0 = TG.Joueurs[0].Decision;
-            Eng_J0 = TG.Joueurs[0].Engagement;
-            Date_J0 = DateTime.Now;
-            Dec_J1 = TG.Joueurs[1].Decision;
-            Eng_J1 = TG.Joueurs[1].Engagement;
-            Date_J1 = DateTime.Now;
-            if (TG.Joueurs.Count > 2)
+            Dec_J0 = pa.Joueurs[0].Decision;
+            Eng_J0 = pa.Joueurs[0].Engagement;
+            Date_J0 = pa.Joueurs[0].DateDec;
+                
+            Dec_J1 = pa.Joueurs[1].Decision;
+            Eng_J1 = pa.Joueurs[1].Engagement;
+            Date_J1 = pa.Joueurs[1].DateDec;
+            if (pa.Joueurs.Count > 2)
             {
-                Dec_J2 = TG.Joueurs[2].Decision;
-                Eng_J2 = TG.Joueurs[2].Engagement;
-                Date_J2 = DateTime.Now;
+                Dec_J2 = pa.Joueurs[2].Decision;
+                Eng_J2 = pa.Joueurs[2].Engagement;
+                Date_J2 = pa.Joueurs[2].DateDec;
             }
             else
             {
                 Dec_J2 = "MORT";
                 Eng_J2 = 0;
-                Date_J2 = new DateTime(1999,12,31);
+                Date_J2 = pa.Joueurs[2].DateDec;
             }
-            if (TG.Joueurs.Count > 3)
+            if (pa.Joueurs.Count > 3)
             {
-                Dec_J3 = TG.Joueurs[3].Decision;
-                Eng_J3 = TG.Joueurs[3].Engagement;
-                Date_J3 = DateTime.Now;
+                Dec_J3 = pa.Joueurs[3].Decision;
+                Eng_J3 = pa.Joueurs[3].Engagement;
+                Date_J3 = pa.Joueurs[3].DateDec;
             }
             else
             {
                 Dec_J3 = "MORT";
                 Eng_J3 = 0;
-                Date_J3 = new DateTime(1999, 12, 31);
+                Date_J3 = pa.Joueurs[3].DateDec;
             }
-            if (TG.Joueurs.Count > 4)
+            if (pa.Joueurs.Count > 4)
             {
-                Dec_J4 = TG.Joueurs[4].Decision;
-                Eng_J4 = TG.Joueurs[4].Engagement;
-                Date_J4 = DateTime.Now;
+                Dec_J4 = pa.Joueurs[4].Decision;
+                Eng_J4 = pa.Joueurs[4].Engagement;
+                Date_J4 = pa.Joueurs[4].DateDec;
             }
             else
             {
                 Dec_J4 = "MORT";
                 Eng_J4 = 0;
-                Date_J4 = new DateTime(1999, 12, 31);
+                Date_J4 = pa.Joueurs[4].DateDec;
             }
-            if (TG.Joueurs.Count > 5)
+            if (pa.Joueurs.Count > 5)
             {
-                Dec_J5 = TG.Joueurs[5].Decision;
-                Eng_J5 = TG.Joueurs[5].Engagement;
-                Date_J5 = DateTime.Now;
+                Dec_J5 = pa.Joueurs[5].Decision;
+                Eng_J5 = pa.Joueurs[5].Engagement;
+                Date_J5 = pa.Joueurs[5].DateDec;
             }
             else
             {
                 Dec_J5 = "MORT";
                 Eng_J5 = 0;
-                Date_J5 = new DateTime(1999, 12, 31);
+                Date_J5 = pa.Joueurs[5].DateDec;
             }
         }
 

@@ -15,13 +15,12 @@ namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
             }
         }
 
-        public void MAJ()
+        public void MAJ(PartieActive pa)
         {
-            ToursParole p = new ToursParole(false);
+            ToursParole p = new ToursParole(pa);
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction trx = session.BeginTransaction())
             {
-
                 session.Update(p);
                 trx.Commit();
             }

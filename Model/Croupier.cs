@@ -12,7 +12,7 @@
 
 namespace PokerNirvana_MVVM_ORM.Model
 {
-    class Croupier
+    public class Croupier
     {
       public int JoueurLogue;
       public string Etape;
