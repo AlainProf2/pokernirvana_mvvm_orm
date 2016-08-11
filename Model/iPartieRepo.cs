@@ -12,6 +12,6 @@ namespace PokerNirvana_MVVM_ORM.Model
         void Inserer(Partie c);
         void MAJ(Partie c);
         ObservableCollection<Partie> RecupPartiesDunTournoi(int t);
-        PartieActive RecupUnePartie(int n);
+        void RecupUnePartie(int n);
     }
 }

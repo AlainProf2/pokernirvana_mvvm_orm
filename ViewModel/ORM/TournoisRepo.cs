@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
 {
-    class TournoisRepo : iTournoiRepo
+    class TournoisRepo
     {
         public void Tronquer()
         {

@@ -59,12 +59,12 @@ namespace PokerNirvana_MVVM_ORM.Model
                 // On retranche ce ALL-IN du tableau, son cas est traité
                 TabAllInTrie.RemoveAt(0);
             }
-           
+
             // Tous les ALL_IN (déficitaires) ont été traités
             // Il faut traiter les joueurs qui avaient les fonds pour suivre normalement
             ConstruitTabDesGagnants();
             RepartiLesGainsFinaux();
-            
+
             return TabJoueurs;
         }
 
@@ -110,7 +110,7 @@ namespace PokerNirvana_MVVM_ORM.Model
                         // ce joueur est chanceux car on arrondit par le haut pour lui
                         Gagnant = TabJoueurs[TabGagnants[i]].Pokerman;
                         int gainTmp = GainIndividuEntier + 1;
-                        TG.AjouteHistorique(Gagnant + " gagne " + gainTmp,1);
+                        TG.AjouteHistorique(Gagnant + " gagne " + gainTmp, 1);
                         //Console.WriteLine("On ajoute " + gainTmp + " a " + TabJoueurs[TabGagnants[i]].Pokerman + " kap: " + TabJoueurs[TabGagnants[i]].Capital);
                         TabJoueurs[TabGagnants[i]].Capital += GainIndividuEntier + 1;
                         Console.WriteLine("Aug A " + TabJoueurs[TabGagnants[i]].Pokerman + " de " + gainTmp + "");
@@ -120,7 +120,7 @@ namespace PokerNirvana_MVVM_ORM.Model
                     else
                     {
                         Gagnant = TabJoueurs[TabGagnants[i]].Pokerman;
-                        TG.AjouteHistorique(Gagnant + " gagne " + GainIndividuEntier,1);
+                        TG.AjouteHistorique(Gagnant + " gagne " + GainIndividuEntier, 1);
                         //Console.WriteLine("On ajoute " + GainIndividuEntier + " a " + TabJoueurs[TabGagnants[i]].Pokerman + " kap: " + TabJoueurs[TabGagnants[i]].Capital);
                         //Console.WriteLine("Enga: " +  TabJoueurs[TabGagnants[i]].Engagement);
                         TabJoueurs[TabGagnants[i]].Capital += GainIndividuEntier;
@@ -144,7 +144,7 @@ namespace PokerNirvana_MVVM_ORM.Model
                     TabJoueurs[TabGagnants[i]].Engagement = NeoMiseEngagee;
                     TabJoueurs[TabGagnants[i]].Capital += Convert.ToInt32(ratioDuGain);
                     Gagnant = TabJoueurs[TabGagnants[i]].Pokerman;
-                    TG.AjouteHistorique(Gagnant + " gagne " + ratioDuGain,1);
+                    TG.AjouteHistorique(Gagnant + " gagne " + ratioDuGain, 1);
                 }
             }
             Console.WriteLine("Kapi B de Antoine:" + TabJoueurs[0].Capital);
@@ -226,7 +226,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         {
             int gain = 0;
             int NbGagnants = TabGagnants.Count();
-           
+
             //Console.WriteLine(TabGagnants.Count() + " gagnant:" + TabGagnants[0] + " " + TabJoueurs[TabGagnants[0]].Pokerman);
             for (int i = 0; i < 6; i++)
             {
@@ -264,7 +264,7 @@ namespace PokerNirvana_MVVM_ORM.Model
                 for (int i = 0; i < TabGagnants.Count(); i++)
                 {
                     string Gagnant = TabJoueurs[TabGagnants[i]].Pokerman;
-                    TG.AjouteHistorique(Gagnant + " gagne " + gain,1);
+                    TG.AjouteHistorique(Gagnant + " gagne " + gain, 1);
                     TabJoueurs[TabGagnants[i]].Capital += gain;
                     Console.WriteLine(TabJoueurs[TabGagnants[i]
                         ].Pokerman + " rexoit " + gain);

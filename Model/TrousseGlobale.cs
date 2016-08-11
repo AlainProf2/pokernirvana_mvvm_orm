@@ -9,34 +9,33 @@ using PokerNirvana_MVVM_ORM.ViewModel;
 
 namespace PokerNirvana_MVVM_ORM.Model
 {
-    // TG pour Trousse Globale
     class TG
     {
         public TG()
         {
 
         }
-
-        public static int NumTournoi;
-        public static int NumPartie;
-        public static int NumMain;
-        public static string Etape;
-        public static int NumTour;
-
+        public static PartieActive PA;
         public static string NomJoueurLogue;
-        public static int    PosJoueurLogue;
+        public static int    JoueurLogue;
         public static string EtatDuJoueur;
         public static string Contexte;
-        public static int Bouton;
-        public static int ProchainJoueur;
+        //public static int Bouton;
+        //public static int ProchainJoueur;
 
+        //public static List<JoueurPartie> Joueurs;
+        //public static int NiveauPourSuivre;
 
         public static string DernierRefresh;
 
-        public static int Relance;
+        //public static int Relance;
         public static string PathImage = "pack://application:,,,/view/images/";
 
-        public static List<JoueurPartie> Joueurs = new List<JoueurPartie>();
+        //public static int Numero_Tournoi;
+        //public static int NumPartie;
+        //public static int NumMain;
+        //public static string Etape;
+        //public static int NumTour;
 
         public static BDService MaBD = new BDService();
 
@@ -61,7 +60,7 @@ namespace PokerNirvana_MVVM_ORM.Model
 
         public static string GetDernierHistorique()
         {
-            string sel = "select max(date) from historique where numeropartie = " + NumPartie;
+            string sel = "select max(date) from historique where numeropartie = " + PA.Numero;
             //List<string>[] res = MaBD.Select(sel);
             //if (res[0][0]!= "")
             //   return res[0][0];
@@ -75,10 +74,9 @@ namespace PokerNirvana_MVVM_ORM.Model
         **************************************/
         public static void GetPosition()
         {
-
-            string sel = "select position from joueurPartie where pokerman = '" + NomJoueurLogue + "' and numero_partie = " + NumPartie;
+            string sel = "select position from joueurPartie where pokerman = '" + NomJoueurLogue + "' and numero_partie = " + PA.Numero;
             //List<string>[] res = MaBD.Select(sel);
-            PosJoueurLogue = 0;//Convert.ToInt32(res[0][0]);
+            TG.JoueurLogue = 0;//Convert.ToInt32(res[0][0]);
         }
         /**************************************
          *
@@ -128,7 +126,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         **************************************/
         public static void changeEtat(string E)
         {
-            string upd = "update joueurPartie set Etat='" + E + "' where pokerman = '" + TG.NomJoueurLogue + "' and numero_partie=" + TG.NumPartie;
+            string upd = "update joueurPartie set Etat='" + E + "' where pokerman = '" + TG.NomJoueurLogue + "' and numero_partie=" + TG.PA.Numero;
             //MaBD.Update(upd);
         }           
 
@@ -137,7 +135,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         **************************************/
         public static string recupEtat(string N)
         {
-            string sel = "select Etat from JoueurPartie where pokerman = '" + TG.NomJoueurLogue + "' and numero_partie=" + TG.NumPartie;
+            string sel = "select Etat from JoueurPartie where pokerman = '" + TG.NomJoueurLogue + "' and numero_partie=" + TG.PA.Numero;
         //    List<string>[] res = MaBD.Select(sel);
         //    string Etat = res[0][0];
         //    return Etat; 

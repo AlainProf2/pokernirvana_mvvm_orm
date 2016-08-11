@@ -67,7 +67,6 @@
     <Compile Include="Model\iMainRepo.cs" />
     <Compile Include="Model\iMembreRepo.cs" />
     <Compile Include="Model\iPartieRepo.cs" />
-    <Compile Include="Model\iTournoiRepo.cs" />
     <Compile Include="Model\iJoueurRepo.cs" />
     <Compile Include="Model\JoueurPartie.cs" />
     <Compile Include="Model\Membre.cs" />
@@ -82,6 +81,7 @@
     <Compile Include="ViewModel\BDService.cs" />
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\MembresListeViewModel.cs" />
+    <Compile Include="ViewModel\ORM\EtapeRepo.cs" />
     <Compile Include="ViewModel\ORM\HistoriqueRepo.cs" />
     <Compile Include="ViewModel\ORM\JoueurRepo.cs" />
     <Compile Include="ViewModel\ORM\MainRepo.cs" />
@@ -318,7 +318,7 @@
     <EmbeddedResource Include="Etape.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="toursParole.hbm.xml">
+    <EmbeddedResource Include="ToursParole.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

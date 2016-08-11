@@ -20,7 +20,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
                 {
                     var cfg = new Configuration();
                     cfg.Configure();
-                    //cfg.AddAssembly(typeof(Tournois).Assembly);
+                    cfg.AddAssembly(typeof(Tournois).Assembly);
                     sessionFactory = cfg.BuildSessionFactory();
                 }
                 return sessionFactory;

@@ -101,7 +101,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
 
         public TournoisPartiesViewModel()
         {
-            iTournoiRepo repo = new TournoisRepo();
+            TournoisRepo repo = new TournoisRepo();
             SommaireTournois = repo.RecupTousTournois();
             
              //CmdNeoTournoi = new Command(ActionNeoTournoi);

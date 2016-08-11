@@ -9,7 +9,7 @@ namespace PokerNirvana_MVVM_ORM.Model
 {
     public class JoueurPartie
     {
-        public JoueurPartie() 
+        public JoueurPartie()
         {
         }
 
@@ -30,7 +30,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         virtual public BitmapImage ImageFlop2 { get; set; }
         virtual public BitmapImage ImageTurn { get; set; }
         virtual public BitmapImage ImageRiver { get; set; }
-       
+
         virtual public void InitImage(uneMain laMain)
         {
             string FicNom = TG.PathImage + "joueurs/" + Pokerman + ".jpg";
@@ -67,33 +67,33 @@ namespace PokerNirvana_MVVM_ORM.Model
             switch (Position)
             {
                 case (0):
-                   c0 = new Carte(laMain.J0_C0_V, laMain.J0_C0_S);
-                   c1 = new Carte(laMain.J0_C1_V, laMain.J0_C1_S);
-                   break;
+                    c0 = new Carte(laMain.J0_C0_V, laMain.J0_C0_S);
+                    c1 = new Carte(laMain.J0_C1_V, laMain.J0_C1_S);
+                    break;
                 case (1):
-                   c0 = new Carte(laMain.J1_C0_V, laMain.J1_C0_S);
-                   c1 = new Carte(laMain.J1_C1_V, laMain.J1_C1_S);
-                   break;
+                    c0 = new Carte(laMain.J1_C0_V, laMain.J1_C0_S);
+                    c1 = new Carte(laMain.J1_C1_V, laMain.J1_C1_S);
+                    break;
                 case (2):
-                   c0 = new Carte(laMain.J2_C0_V, laMain.J2_C0_S);
-                   c1 = new Carte(laMain.J2_C1_V, laMain.J2_C1_S);
-                   break;
+                    c0 = new Carte(laMain.J2_C0_V, laMain.J2_C0_S);
+                    c1 = new Carte(laMain.J2_C1_V, laMain.J2_C1_S);
+                    break;
                 case (3):
-                   c0 = new Carte(laMain.J3_C0_V, laMain.J3_C0_S);
-                   c1 = new Carte(laMain.J3_C1_V, laMain.J3_C1_S);
-                   break;
+                    c0 = new Carte(laMain.J3_C0_V, laMain.J3_C0_S);
+                    c1 = new Carte(laMain.J3_C1_V, laMain.J3_C1_S);
+                    break;
                 case (4):
-                   c0 = new Carte(laMain.J4_C0_V, laMain.J4_C0_S);
-                   c1 = new Carte(laMain.J4_C1_V, laMain.J4_C1_S);
-                   break;
+                    c0 = new Carte(laMain.J4_C0_V, laMain.J4_C0_S);
+                    c1 = new Carte(laMain.J4_C1_V, laMain.J4_C1_S);
+                    break;
                 case (5):
-                   c0 = new Carte(laMain.J5_C0_V, laMain.J5_C0_S);
-                   c1 = new Carte(laMain.J5_C1_V, laMain.J5_C1_S);
-                   break;
+                    c0 = new Carte(laMain.J5_C0_V, laMain.J5_C0_S);
+                    c1 = new Carte(laMain.J5_C1_V, laMain.J5_C1_S);
+                    break;
                 default:
-                   c0 = null;
-                   c1 = null;
-                   break;
+                    c0 = null;
+                    c1 = null;
+                    break;
             }
             ImageCarte0 = c0.imgCarte;
             ImageCarte1 = c1.imgCarte;

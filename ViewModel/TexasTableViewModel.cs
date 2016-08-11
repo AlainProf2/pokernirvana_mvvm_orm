@@ -78,7 +78,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
             set { msghistorique = value; }
         }
 
-        
+
 
         //private List<JoueurPartie> lesJoueurs;
         //public List<JoueurPartie> LesJoueurs
@@ -89,8 +89,8 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         //        lesJoueurs = value;
         //    }
         //}
-   
-        static private PartieActive partieCourante;
+
+        //static private PartieActive partieCourante;
 
         private DispatcherTimer delai = new DispatcherTimer();
         bool NouvellePartie = true;
@@ -101,19 +101,22 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
             TG.EtatDuJoueur = "";
             changeEtat();
 
-            partieCourante.Joueurs[TG.PosJoueurLogue].Decision = "ABANDONNER";
+            TG.PA.Joueurs[TG.JoueurLogue].Decision = "ABANDONNER";
+            TG.PA.Joueurs[TG.JoueurLogue].DateDec = DateTime.Now;
+
             ToursParoleRepo TPR = new ToursParoleRepo();
-            TPR.MAJ(partieCourante);
+            TPR.MAJ();
             int[] TabEng = new int[6];
             string[] TabDec = new string[6];
-            for (int i = 0; i < partieCourante.Joueurs.Count; i++)
-                TabDec[i] = partieCourante.Joueurs[i].Decision;
-            for (int i = 0; i < partieCourante.Joueurs.Count; i++)
-                TabEng[i] = partieCourante.Joueurs[i].Engagement;
-            partieCourante.croupier = new Croupier(TabDec, TabEng, partieCourante.NiveauPourSuivre, TG.PosJoueurLogue, partieCourante.Etape, partieCourante.Bouton);
+            for (int i = 0; i < TG.PA.Joueurs.Count; i++)
+                TabDec[i] = TG.PA.Joueurs[i].Decision;
+            for (int i = 0; i < TG.PA.Joueurs.Count; i++)
+                TabEng[i] = TG.PA.Joueurs[i].Engagement;
+            TG.PA.croupier = new Croupier(TabDec, TabEng, TG.PA.NiveauPourSuivre, TG.JoueurLogue, TG.PA.Etape, TG.PA.Bouton);
 
-            partieCourante.croupier.DetermineProchainJoueur("");
-      
+            TG.PA.croupier.DetermineProchainJoueur("");
+
+
             ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
             //TG.Relance = Convert.ToInt32(CB_ValRelance.Text);
 
@@ -129,7 +132,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
             cmdAbandonner = new Command(Abandonner);
             if (TG.NomJoueurLogue == null)
                 TG.NomJoueurLogue = "pough";
-            
+
             recupEtatJoueur();
             traiteDelai();
 
@@ -137,46 +140,45 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
             {
                 NouvellePartie = false;
                 iPartieRepo partieRepo = new PartieRepo();
-                partieCourante =partieRepo.RecupUnePartie((int)TG.NumPartie);
-                Titre = "Poker Nirvana, Partie " + partieCourante.Numero + ", main " + partieCourante.Numero_Main + ". Joueur: " + TG.NomJoueurLogue;
+                partieRepo.RecupUnePartie((int)TG.PA.Numero);
+                Titre = "Poker Nirvana, Partie " + TG.PA.Numero + ", main " + TG.PA.Numero_Main + ". Joueur: " + TG.NomJoueurLogue;
 
                 iMainRepo mainRepo = new MainRepo();
-                uneMain mainCourante = mainRepo.RecupUneMain(partieCourante.Numero, partieCourante.Numero_Main);
-                TG.Bouton = mainCourante.Bouton; 
-               
+                uneMain mainCourante = mainRepo.RecupUneMain(TG.PA.Numero, TG.PA.Numero_Main);
+                TG.PA.Bouton = mainCourante.Bouton;
 
-                JoueurRepo joueurRepo =  new JoueurRepo();
-                TG.Joueurs = joueurRepo.RecupJoueursDunePartie(partieCourante);
-                
 
-                JoueurA = TG.Joueurs[0];
+                JoueurRepo joueurRepo = new JoueurRepo();
+                TG.PA.Joueurs = joueurRepo.RecupJoueursDunePartie();
+
+                JoueurA = TG.PA.Joueurs[0];
                 JoueurA.InitImage(mainCourante);
-                
-                JoueurB = TG.Joueurs[1];
+
+                JoueurB = TG.PA.Joueurs[1];
                 JoueurB.InitImage(mainCourante);
-                if (TG.Joueurs.Count() > 2)
+                if (TG.PA.Joueurs.Count() > 2)
                 {
-                    JoueurC = TG.Joueurs[2];
+                    JoueurC = TG.PA.Joueurs[2];
                     JoueurC.InitImage(mainCourante);
                 }
-                if (TG.Joueurs.Count() > 3)
+                if (TG.PA.Joueurs.Count() > 3)
                 {
-                    JoueurD = TG.Joueurs[3];
+                    JoueurD = TG.PA.Joueurs[3];
                     JoueurD.InitImage(mainCourante);
                 }
-                if (TG.Joueurs.Count() > 4)
+                if (TG.PA.Joueurs.Count() > 4)
                 {
-                    JoueurE = TG.Joueurs[4];
+                    JoueurE = TG.PA.Joueurs[4];
                     JoueurE.InitImage(mainCourante);
                 }
-                if (TG.Joueurs.Count() > 5)
+                if (TG.PA.Joueurs.Count() > 5)
                 {
-                    JoueurF = TG.Joueurs[5];
+                    JoueurF = TG.PA.Joueurs[5];
                     JoueurF.InitImage(mainCourante);
                 }
 
                 HistoriqueRepo HistoRepo = new HistoriqueRepo();
-                List<Historique> ListeHisto = HistoRepo.RecupHistoriqueDunePartie(partieCourante.Numero);
+                List<Historique> ListeHisto = HistoRepo.RecupHistoriqueDunePartie(TG.PA.Numero);
 
                 string Desc = "";
                 int cmp = ListeHisto.Count;
@@ -186,8 +188,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
                     cmp--;
                 }
                 MsgHistorique = Desc;
-                partieCourante = new PartieActive(NouvellePartie, 1973);
-               // partieCourante.Joue("", "Texas");
+                // TG.PA.Joue("", "Texas");
             }
         }
 
@@ -245,9 +246,9 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
         private string recupEtat()
         {
             return "";
-            
+
             string sel = "select Etat from JoueurPartie where pokerman = '" +
-                     TG.NomJoueurLogue + "' and numero_partie=" + TG.NumPartie;
+                     TG.NomJoueurLogue + "' and numero_partie=" + TG.PA.Numero;
             List<string>[] res = TG.MaBD.Select(sel);
             return res[0][0];
         }
@@ -303,6 +304,6 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
- 
+
     }
 }

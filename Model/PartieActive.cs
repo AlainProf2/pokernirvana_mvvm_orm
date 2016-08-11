@@ -9,7 +9,7 @@ using PokerNirvana_MVVM_ORM.ViewModel;
 
 namespace PokerNirvana_MVVM_ORM.Model
 {
-    public class PartieActive  : Partie
+    public class PartieActive : Partie
     {
         //public event PropertyChangedEventHandler PropertyChanged;
         //public void OnPropertyChanged(PropertyChangedEventArgs e)
@@ -22,7 +22,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         public int JoueurLogue;
         public int ProchainJoueur;
         public string GagnantPartie = "";
-        private int Num_Tour;
+        public int Num_Tour;
         public int NiveauPourSuivre { get; set; }
         public Croupier croupier;
 
@@ -99,7 +99,7 @@ namespace PokerNirvana_MVVM_ORM.Model
 
         public PartieActive(bool NouvellePartie, int RD)
         {
-            InfoDeBase(TG.NomJoueurLogue, TG.NumPartie);
+            InfoDeBase(TG.NomJoueurLogue, TG.PA.Numero);
 
             if (NouvellePartie)
             {
@@ -111,6 +111,12 @@ namespace PokerNirvana_MVVM_ORM.Model
 
                 ReCharge(RD);
             }
+        }
+
+        public PartieActive(int n)
+        {
+            InfoDeBase(TG.NomJoueurLogue, n);
+            ReCharge(0);
         }
 
 
@@ -1175,8 +1181,8 @@ namespace PokerNirvana_MVVM_ORM.Model
         private void TransitionUsuelle(string statut)
         {
             string JoueurSession = "Tigars"; //TG.PokermanJoueurLogue.ToLower();
-                                             //string js = JoueurSession;
-                                             //string pj = ConvertNumToNom(ProchainJoueur);
+            //string js = JoueurSession;
+            //string pj = ConvertNumToNom(ProchainJoueur);
 
             if (JoueurSession == ConvertNumToNom(ProchainJoueur).ToLower())
             {

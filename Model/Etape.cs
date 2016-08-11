@@ -12,6 +12,15 @@ namespace PokerNirvana_MVVM_ORM.Model
         public Etape()
         {
         }
+        public Etape(bool f)
+        {
+            Num_Partie = TG.PA.Numero;
+           Num_Main = TG.PA.Numero_Main;
+           NomEtape = TG.PA.Etape;
+           ProchainJoueur = TG.PA.ProchainJoueur;
+           Num_Tour = TG.PA.Num_Tour;
+           Date_Evenement = DateTime.Now;
+        }
 
         virtual public int Num_Partie { get; set; }
         virtual public int Num_Main { get; set; }

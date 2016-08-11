@@ -30,7 +30,7 @@ namespace PokerNirvana_MVVM_ORM.Model
         virtual public string Nom_J3 { get; set; }
         virtual public string Nom_J4 { get; set; }
         virtual public string Nom_J5 { get; set; }
-        
+
         public Partie()
         {
 

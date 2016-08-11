@@ -130,11 +130,11 @@ namespace PokerNirvana_MVVM_ORM.Model
             set { decision = value; }
         }
 
-        private DateTime dateDec;
-        public DateTime DateDec
+        private string datedec;
+        public string DateDec
         {
-            get { return dateDec; }
-            set { dateDec = value; }
+            get { return datedec; }
+            set { datedec = value; }
         }
 
         public int ValeurMainCourante
@@ -143,15 +143,13 @@ namespace PokerNirvana_MVVM_ORM.Model
             set { valeurMainCourante = value; }
         }
 
-        public Joueur(int pos, string n, int cap, string cour, int eng, string dec, DateTime dat
-            )
+        public Joueur(int pos, string n, int cap, string cour, int eng, string dec)
         {
             Position = pos;
             Pokerman = n;
             Capital = cap;
             Courriel = cour;
             Decision = dec;
-            DateDec = dat;
             Engagement = 0;
             ImagePokerman = new BitmapImage(new Uri(TG.PathImage + Pokerman + ".jpg"));
 

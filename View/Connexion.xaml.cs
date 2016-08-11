@@ -13,8 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PokerNirvana_MVVM_ORM.Model;
 using PokerNirvana_MVVM_ORM.ViewModel.Service;
+using PokerNirvana_MVVM_ORM.View;
 
-namespace PokerNirvana_MVVM_ORM.View
+namespace PokerNirvana_MVVM_ADO.View
 {
     /// <summary>
     /// Logique d'interaction pour Connexion.xaml
@@ -25,39 +26,40 @@ namespace PokerNirvana_MVVM_ORM.View
         {
             InitializeComponent();
         }
-
         private void ConnecteP(object sender, RoutedEventArgs e)
         {
-            Aller335("pough"); 
+            Aller335("pough", 0);
         }
 
-        private void Aller335(string pm)
+        private void Aller335(string pm, int pos)
         {
             TG.NomJoueurLogue = pm;
-            TG.NumPartie = 335;
-            TG.PosJoueurLogue = 2;
+            TG.JoueurLogue = pos;
+            TG.PA = new PartieActive(335);
+            
             ServiceFactory.Instance.GetService<IApplicationService>().ChangerVue(new TexasTable());
-
         }
+
         private void ConnecteCh(object sender, RoutedEventArgs e)
         {
-            Aller335("cheen");
+            Aller335("cheen", 1);
         }
         private void ConnecteCe(object sender, RoutedEventArgs e)
         {
-            Aller335("certs");
+            Aller335("certs", 2);
         }
         private void ConnecteG(object sender, RoutedEventArgs e)
         {
-            Aller335("gos");
+            Aller335("gos", 3);
         }
         private void ConnecteK(object sender, RoutedEventArgs e)
         {
-            Aller335("k");
+            Aller335("k", 4);
         }
         private void ConnecteS(object sender, RoutedEventArgs e)
         {
-            Aller335("speed");
+            Aller335("speed", 5);
         }
     }
 }
+

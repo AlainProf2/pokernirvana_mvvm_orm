@@ -46,7 +46,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
             }
         }
 
-        public PartieActive RecupUnePartie(int NumPartie)
+        public void RecupUnePartie(int NumPartie)
         {
             ISession session = NHibernateHelper.OpenSession();
             try
@@ -54,23 +54,38 @@ namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
                 ITransaction trx = session.BeginTransaction();
                 IQuery sel = session.CreateQuery("from Partie where Numero = " + NumPartie);
                 List<Partie> ListeParties = new List<Partie>(sel.List<Partie>());
-                return ActiverPartie(ListeParties[0]);
+                ActiverPartie(ListeParties[0]);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
-                return null;
             }
         }
 
-        private PartieActive ActiverPartie(Partie p)
+        private void ActiverPartie(Partie p)
         {
-            PartieActive pa = new PartieActive(false, 0);
-            pa.Numero = p.Numero;
-            pa.Numero_Main = p.Numero_Main;
-                pa.Numero_Tournoi = p.Numero_Tournoi;
-            pa.Joueurs = TG.Joueurs;
-            return pa;
+            TG.PA.Numero_Tournoi = p.Numero_Tournoi;
+            TG.PA.Debut = p.Debut;
+            TG.PA.Numero = p.Numero;
+            TG.PA.Numero_Main = p.Numero_Main;
+            TG.PA.Nom_J0 = p.Nom_J0;
+            TG.PA.Nom_J1 = p.Nom_J1;
+            TG.PA.Nom_J2 = p.Nom_J2;
+            TG.PA.Nom_J3 = p.Nom_J3;
+            TG.PA.Nom_J4 = p.Nom_J4;
+            TG.PA.Nom_J5 = p.Nom_J5;
+            TG.PA.Perdant_1 = p.Perdant_1;
+            TG.PA.Perdant_2 = p.Perdant_2;
+            TG.PA.Perdant_3 = p.Perdant_3;
+            TG.PA.Perdant_4 = p.Perdant_4;
+            TG.PA.Perdant_5 = p.Perdant_5;
+            TG.PA.Perdant_1_Date = p.Perdant_1_Date;
+            TG.PA.Perdant_2_Date = p.Perdant_2_Date;
+            TG.PA.Perdant_3_Date = p.Perdant_3_Date;
+            TG.PA.Perdant_4_Date = p.Perdant_4_Date;
+            TG.PA.Perdant_5_Date = p.Perdant_5_Date;
+
+      
 
         }
     }

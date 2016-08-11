@@ -2,17 +2,15 @@
 using PokerNirvana_MVVM_ORM.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
 {
-    class HistoriqueRepo : iHistoriqueRepo
+    class EtapeRepo
     {
-
-        public void Inserer(Historique p)
+        public void Inserer(Etape p)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction trx = session.BeginTransaction())
@@ -22,27 +20,13 @@ namespace PokerNirvana_MVVM_ORM.ViewModel.ORM
             }
         }
 
-        public void MAJ(Historique p)
+        public void MAJ(Etape p)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction trx = session.BeginTransaction())
             {
                 session.Update(p);
                 trx.Commit();
-
-            }
-        }
-
-        public List<Historique> RecupHistoriqueDunePartie(int NumPartie)
-        {
-            using (ISession session = NHibernateHelper.OpenSession())
-            using (ITransaction trx = session.BeginTransaction())
-            {
-                IQuery sel = session.CreateQuery("from Historique where NumeroPartie = " + NumPartie + " order by Numero_Evenement desc");
-                List<Historique> ListeHisto = new List<Historique>(sel.List<Historique>());
-
-                trx.Commit();
-                return ListeHisto;
             }
         }
     }

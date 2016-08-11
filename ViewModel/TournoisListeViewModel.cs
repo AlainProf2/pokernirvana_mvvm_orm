@@ -99,7 +99,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
 
         private void ActionToutEnreg(object param)
         {
-            iTournoiRepo repo = new TournoisRepo();
+            TournoisRepo repo = new TournoisRepo();
             repo.Tronquer();
 
             foreach (Tournois c in SommaireTournois)
@@ -117,7 +117,7 @@ namespace PokerNirvana_MVVM_ORM.ViewModel
 
         public TournoisListeViewModel()
         {
-            iTournoiRepo repo = new TournoisRepo();
+            TournoisRepo repo = new TournoisRepo();
 
             SommaireTournois = repo.RecupTousTournois();
 
